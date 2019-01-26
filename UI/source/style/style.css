@@ -29,7 +29,6 @@ body {
 .login-form {
 	width: 100%;
 	height: calc(100vh + 350px);
-=======
     text-decoration: none;
 }
 body {
@@ -63,7 +62,6 @@ body {
 .login-form {
     width: 100%;
     height: calc(100vh + 350px);
->>>>>>> 1ceed81d4e393d4ccf78ac7077f1878b2fe98e2f
     margin: 0 auto;
 
 }
@@ -75,11 +73,8 @@ body {
 }
 
 .panel{
-<<<<<<< HEAD
 	margin: 0 auto;
-=======
     margin: 0 auto;
->>>>>>> 1ceed81d4e393d4ccf78ac7077f1878b2fe98e2f
     width: 80%;
     background:#fff;
     border-radius: 10px;
@@ -110,9 +105,7 @@ body {
 .login-form .panel-body .row {
 <<<<<<< HEAD
 	padding-left: 15px;
-=======
     padding-left: 15px;
->>>>>>> 1ceed81d4e393d4ccf78ac7077f1878b2fe98e2f
     padding-right: 25px;
     margin-bottom: 15px;
 }
