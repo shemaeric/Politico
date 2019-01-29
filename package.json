@@ -1,0 +1,39 @@
+{
+  "name": "Politico",
+  "version": "1.0.0",
+  "description": "Politico is a platform to help a user to vote or register for candidate as politician.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "build": "babel server.js --out-dir build",
+    "dev-start": "babel-watch server.js",
+    "lint": "eslint ./src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shemaeric/Politico.git"
+  },
+  "keywords": [],
+  "author": "Shema Eric",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shemaeric/Politico/issues"
+  },
+  "homepage": "https://github.com/shemaeric/Politico#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.8",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "moment": "^2.24.0",
+    "uuid": "^3.3.2"
+  }
+}
