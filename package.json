@@ -4,7 +4,7 @@
   "description": "Politico is a platform to help a user to vote or register for candidate as politician.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha ./tests",
     "build": "babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
     "lint": "eslint ./src --fix"
