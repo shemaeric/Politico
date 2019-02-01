@@ -11,7 +11,10 @@ app.get('/', (req, res) => {
 	});
 });
 
+// create a party
 app.post('/api/v1/parties', Party.create);
+// get all parties
+app.get('/api/v1/parties', Party.getAll);
 
 app.listen(3000)
 

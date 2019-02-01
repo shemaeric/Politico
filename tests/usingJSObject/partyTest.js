@@ -44,5 +44,19 @@ describe('Create a Politico Party', () => {
 				expect(res.body.message).to.equal('Party Succefully Created');
 			done();
 			})
+	});
+});
+
+// test Get all parties endpoint
+describe('Get all Politico Parties', () => {
+
+	it('it should create a party', (done) => {
+		chai.request(app)
+			.get('/api/v1/parties')
+			.end((err,res) => {
+				expect(res.status).to.equal(200);
+				expect(res.body).to.be.an('Object');	
+			done();
+			})
 	})	
 })
