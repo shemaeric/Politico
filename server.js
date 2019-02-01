@@ -17,6 +17,8 @@ app.post('/api/v1/parties', Party.create);
 app.get('/api/v1/parties', Party.getAll);
 //get a specific party
 app.get('/api/v1/parties/:id', Party.getOne);
+//update a party
+app.patch('/api/v1/parties/:id', Party.update);
 
 app.listen(3000)
 
