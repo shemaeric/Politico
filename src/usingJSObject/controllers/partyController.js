@@ -18,7 +18,8 @@ const Party = {
     const party = partyModel.create(req.body);
     return res.status(201).send({
       status: 201,
-      data: [party],
+      message : 'Party Succefully Created',
+      data: [party]
     });
   },
 

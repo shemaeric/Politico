@@ -16,3 +16,5 @@ app.post('/api/v1/parties', Party.create);
 app.listen(3000)
 
 console.log('app listening to port', 3000);
+
+export default app;
