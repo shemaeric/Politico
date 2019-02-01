@@ -31,8 +31,8 @@ const Party = {
   getAll(req, res) {
     const parties = partyModel.findAll();
     return res.status(200).send({
-      status : 200,
-      data: [parties]
+      status: 200,
+      data: [parties],
     });
   },
 
@@ -43,16 +43,16 @@ const Party = {
 */
   getOne(req, res) {
     const party = partyModel.findOne(req.params.id);
-    if(!party) {
+    if (!party) {
       return res.status(404).send({
-        status : 404,
-        message : 'party not found'
+        status: 404,
+        message: 'party not found',
       });
     }
 
     return res.status(200).send({
       status: 200,
-      data : [party]
+      data: [party],
     });
   },
 
@@ -63,16 +63,38 @@ const Party = {
 */
   update(req, res) {
     const party = partyModel.findOne(req.params.id);
-    if(!party) {
+    if (!party) {
       return res.status(404).send({
-        status : 404,
-        message : 'party not found'
+        status: 404,
+        message: 'party not found',
       });
     }
     const updatedParty = partyModel.update(req.params.id, req.body);
     return res.status(200).send({
-      status : 200,
-      data : [updatedParty]
+      status: 200,
+      data: [updatedParty],
+    });
+  },
+
+  /*
+* @param {Object} req
+* @param {Object} res
+* @returns {Object} return status code and message for deleted
+*/
+  delete(req, res) {
+    const party = partyModel.findOne(req.params.id);
+    if (!party) {
+      return res.status(404).send({
+        status: 404,
+        message: 'Party not found',
+      });
+    }
+
+    const del = partyModel.delete(req.params.id);
+    return res.status(200).send({
+      status: 200,
+      message: 'party deleted',
+      data: [{ message: 'party deleted', data: [del] }],
     });
   },
 

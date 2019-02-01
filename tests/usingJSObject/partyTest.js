@@ -107,7 +107,7 @@ describe('Get a specific Politico Parties', () => {
 	});	
 });
 
-describe('Update a Political Parties', () => {
+describe('Update a Political Party', () => {
 
 	it('it should fail to Update a party', (done) => {
 		let data = {
@@ -146,6 +146,48 @@ describe('Update a Political Parties', () => {
 			.end((err, res) => {
 				expect(res.status).to.equal(200);
 				expect(res.body).to.be.an('Object');
+			done();
+			})
+		
+	});	
+});
+
+describe('Delete a Political Party', () => {
+
+	it('it should fail to Delete a party', (done) => {
+		let data = {
+			"name" : "democrats",
+			"hqAdress" : "kigali",
+    		"logoUrl": "hiensisss",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let party = Party.create(data);
+		chai.request(app)
+			.delete('/api/v1/parties/dhfdafd')
+			.end((err, res) => {
+				expect(res.status).to.equal(404);
+				expect(res.body.message).to.equal('Party not found');
+			done();
+			})
+		
+	});	
+
+	it('it should delete a party', (done) => {
+		let data = {
+			"name" : "democrats",
+			"hqAdress" : "kigali",
+    		"logoUrl": "hiensisss",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let party = Party.create(data);
+		chai.request(app)
+			.delete('/api/v1/parties/' + party.id)
+			.end((err, res) => {
+				expect(res.status).to.equal(200);
 			done();
 			})
 		
