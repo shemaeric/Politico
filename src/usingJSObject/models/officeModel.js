@@ -55,6 +55,16 @@ class Office {
 
     return this.offices[index];
   }
+
+    /*
+  * @param {uuid} id
+  */
+  delete(id) {
+    const office = this.findOne(id);
+    const index = this.offices.indexOf(office);
+    this.offices.splice(index, 1);
+    return {};
+  }
 }
 
 export default new Office();

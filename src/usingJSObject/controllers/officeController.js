@@ -39,7 +39,7 @@ const Office = {
   /*
 * @param {Object} req
 * @param {Object} res
-* @retuns {Object} party object
+* @retuns {Object} office object
 */
   getOne(req, res) {
     const office = officeModel.findOne(req.params.id);
@@ -59,7 +59,7 @@ const Office = {
   /*
 * @param {Object} req
 * @param {Object} res
-* @returns {Object} update party
+* @returns {Object} update office
 */
   update(req, res) {
     const office = officeModel.findOne(req.params.id);
@@ -73,6 +73,27 @@ const Office = {
     return res.status(200).send({
       status: 200,
       data: [updatedOffice],
+    });
+  },
+
+   /*
+* @param {Object} req
+* @param {Object} res
+* @returns {Object} return status code and message for deleted
+*/
+  delete(req, res) {
+    const office = officeModel.findOne(req.params.id);
+    if (!office) {
+      return res.status(404).send({
+        status: 404,
+        message: 'Office not found',
+      });
+    }
+
+    const del = officeModel.delete(req.params.id);
+    return res.status(200).send({
+      status: 200,
+      data: [{ message: 'office deleted', data: [del] }],
     });
   },
 
