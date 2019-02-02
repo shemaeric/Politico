@@ -1,5 +1,6 @@
 import express from 'express';
 import Party from './src/usingJSObject/controllers/partyController';
+import Office from './src/usingJSObject/controllers/officeController';
 
 const app = express()
 
@@ -21,6 +22,8 @@ app.get('/api/v1/parties/:id', Party.getOne);
 app.patch('/api/v1/parties/:id', Party.update);
 //delete a party
 app.delete('/api/v1/parties/:id', Party.delete);
+// create office
+app.post('/api/v1/offices/', Office.create);
 
 app.listen(3000)
 
