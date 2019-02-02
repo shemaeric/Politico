@@ -36,7 +36,7 @@ const Office = {
     });
   },
 
-    /*
+  /*
 * @param {Object} req
 * @param {Object} res
 * @retuns {Object} party object
@@ -53,6 +53,26 @@ const Office = {
     return res.status(200).send({
       status: 200,
       data: [office],
+    });
+  },
+
+  /*
+* @param {Object} req
+* @param {Object} res
+* @returns {Object} update party
+*/
+  update(req, res) {
+    const office = officeModel.findOne(req.params.id);
+    if (!office) {
+      return res.status(404).send({
+        status: 404,
+        message: 'office not found',
+      });
+    }
+    const updatedOffice = officeModel.update(req.params.id, req.body);
+    return res.status(200).send({
+      status: 200,
+      data: [updatedOffice],
     });
   },
 

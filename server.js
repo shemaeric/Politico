@@ -28,6 +28,8 @@ app.post('/api/v1/offices/', Office.create);
 app.get('/api/v1/offices/', Office.getAll);
 //get a specific party
 app.get('/api/v1/offices/:id', Office.getOne);
+//update an Office
+app.patch('/api/v1/offices/:id', Office.update);
 
 app.listen(3000)
 
