@@ -24,6 +24,8 @@ app.patch('/api/v1/parties/:id', Party.update);
 app.delete('/api/v1/parties/:id', Party.delete);
 // create office
 app.post('/api/v1/offices/', Office.create);
+// get All offices
+app.get('/api/v1/offices/', Office.getAll);
 
 app.listen(3000)
 

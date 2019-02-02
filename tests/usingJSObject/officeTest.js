@@ -48,3 +48,17 @@ describe('Create a Government Office', () => {
 			})
 	});
 });
+
+// test Get all offices endpoint
+describe('Get all Government offices', () => {
+
+	it('it should get all offices', (done) => {
+		chai.request(app)
+			.get('/api/v1/offices')
+			.end((err,res) => {
+				expect(res.status).to.equal(200);
+				expect(res.body).to.be.an('Object');	
+			done();
+			})
+	});	
+});
