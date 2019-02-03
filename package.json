@@ -4,7 +4,7 @@
   "description": "Politico is a platform to help a user to vote or register for candidate as politician.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --require babel-core/register --timeout 5000 tests/usingJSObject/*.js --exit",
     "build": "babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
     "lint": "eslint ./src --fix"
@@ -22,14 +22,15 @@
   "homepage": "https://github.com/shemaeric/Politico#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-watch": "^2.0.8",
     "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.15.0",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.18.9"
+    "mocha": "^5.2.0"
   },
   "dependencies": {
     "express": "^4.16.4",
