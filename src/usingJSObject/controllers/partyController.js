@@ -18,10 +18,24 @@ const Party = {
     const party = partyModel.create(req.body);
     return res.status(201).send({
       status: 201,
-      message : 'Party Succefully Created',
-      data: [party]
+      message: 'Party Succefully Created',
+      data: [party],
     });
   },
+
+  /*
+* @param {Object} req
+* @param {Object} res
+* @returns {Object} parties Array
+*/
+  getAll(req, res) {
+    const parties = partyModel.findAll();
+    return res.status(200).send({
+      status : 200,
+      data: [parties]
+    })
+  }
+
 
 };
 
