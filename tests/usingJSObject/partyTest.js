@@ -53,7 +53,7 @@ describe('Create a Politico Party', () => {
 // test Get all parties endpoint
 describe('Get all Politico Parties', () => {
 
-	it('it should create a party', (done) => {
+	it('it should get all parties', (done) => {
 		chai.request(app)
 			.get('/api/v1/parties')
 			.end((err,res) => {
@@ -98,6 +98,51 @@ describe('Get a specific Politico Parties', () => {
 		let party = Party.create(data);
 		chai.request(app)
 			.get('/api/v1/parties/' + party.id)
+			.end((err, res) => {
+				expect(res.status).to.equal(200);
+				expect(res.body).to.be.an('Object');
+			done();
+			})
+		
+	});	
+});
+
+describe('Update a Political Parties', () => {
+
+	it('it should fail to Update a party', (done) => {
+		let data = {
+			"name" : "democrats",
+			"hqAdress" : "kigali",
+    		"logoUrl": "hiensisss",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let party = Party.create(data);
+		chai.request(app)
+			.patch('/api/v1/parties/dhfdafd')
+			.send({ "name" : "demo"})
+			.end((err, res) => {
+				expect(res.status).to.equal(404);
+				expect(res.body.message).to.equal('party not found');
+			done();
+			})
+		
+	});	
+
+	it('it should update a party', (done) => {
+		let data = {
+			"name" : "democrats",
+			"hqAdress" : "kigali",
+    		"logoUrl": "hiensisss",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let party = Party.create(data);
+		chai.request(app)
+			.patch('/api/v1/parties/' + party.id)
+			.send({"name" : "demo"})
 			.end((err, res) => {
 				expect(res.status).to.equal(200);
 				expect(res.body).to.be.an('Object');
