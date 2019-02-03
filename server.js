@@ -26,10 +26,12 @@ app.delete('/api/v1/parties/:id', Party.delete);
 app.post('/api/v1/offices/', Office.create);
 // get All offices
 app.get('/api/v1/offices/', Office.getAll);
-//get a specific party
+//get a specific office
 app.get('/api/v1/offices/:id', Office.getOne);
 //update an Office
 app.patch('/api/v1/offices/:id', Office.update);
+//delete a office
+app.delete('/api/v1/offices/:id', Office.delete);
 
 app.listen(3000)
 

@@ -148,3 +148,44 @@ describe('Update a Government Office', () => {
 		
 	});	
 });
+
+// delete a government office
+describe('Delete a Government Office', () => {
+
+	it('it should fail to Delete an Office', (done) => {
+		let data = {
+			"name" : "state office",
+			"type" : "state",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let office = Office.create(data);
+		chai.request(app)
+			.delete('/api/v1/offices/dhfdafd')
+			.end((err, res) => {
+				expect(res.status).to.equal(404);
+				expect(res.body.message).to.equal('Office not found');
+			done();
+			})
+		
+	});	
+
+	it('it should delete an Office', (done) => {
+		let data = {
+			"name" : "state office",
+			"type" : "state",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let office = Office.create(data);
+		chai.request(app)
+			.delete('/api/v1/offices/' + office.id)
+			.end((err, res) => {
+				expect(res.status).to.equal(200);
+			done();
+			})
+		
+	});	
+});
