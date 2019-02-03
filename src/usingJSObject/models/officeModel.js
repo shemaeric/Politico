@@ -34,7 +34,7 @@ class Office {
     return this.offices;
   }
 
-    /*
+  /*
   * @param {id} id
   * @ returns {Object} office Object
   */
@@ -42,6 +42,19 @@ class Office {
     return this.offices.find(office => office.id === id);
   }
 
+  /*
+  * @param {uuid} id
+  * @param {Object} data
+  */
+  update(id, data) {
+    const office = this.findOne(id);
+    const index = this.offices.indexOf(office);
+    this.offices[index].name = data.name || office.name;
+    this.offices[index].type = data.type || office.type;
+    this.offices[index].modifiedDate = moment.now();
+
+    return this.offices[index];
+  }
 }
 
 export default new Office();

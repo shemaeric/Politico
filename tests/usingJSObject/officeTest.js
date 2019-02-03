@@ -104,3 +104,47 @@ describe('Get a specific Government office', () => {
 		
 	});	
 });
+
+// update a government office
+describe('Update a Government Office', () => {
+
+	it('it should fail to Update an Office', (done) => {
+		let data = {
+			"name" : "state office",
+			"type" : "state",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let office = Office.create(data);
+		chai.request(app)
+			.patch('/api/v1/offices/dhfdafd')
+			.send({ "name" : "local office"})
+			.end((err, res) => {
+				expect(res.status).to.equal(404);
+				expect(res.body.message).to.equal('office not found');
+			done();
+			})
+		
+	});	
+
+	it('it should update a office', (done) => {
+		let data = {
+			"name" : "state office",
+			"type" : "state",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let office = Office.create(data);
+		chai.request(app)
+			.patch('/api/v1/offices/' + office.id)
+			.send({"name" : "local office"})
+			.end((err, res) => {
+				expect(res.status).to.equal(200);
+				expect(res.body).to.be.an('Object');
+			done();
+			})
+		
+	});	
+});
