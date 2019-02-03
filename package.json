@@ -4,10 +4,11 @@
   "description": "Politico is a platform to help a user to vote or register for candidate as politician.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-core/register --timeout 5000 tests/usingJSObject/*.js --exit",
+    "test": "nyc --reporter=html --reporter=text mocha --require babel-core/register --timeout 5000 tests/usingJSObject/*.js --exit",
     "build": "babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
-    "lint": "eslint ./src --fix"
+    "lint": "eslint ./src --fix",
+    "coverage":"nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,13 @@
     "babel-watch": "^2.0.8",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
+    "coveralls": "^3.0.2",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.15.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^13.1.0"
   },
   "dependencies": {
     "express": "^4.16.4",
