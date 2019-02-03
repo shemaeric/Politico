@@ -6,12 +6,6 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-	return res.status(200).send({
-		'message' : 'hello world'
-	});
-});
-
 // create a party
 app.post('/api/v1/parties', Party.create);
 // get all parties
