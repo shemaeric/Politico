@@ -33,6 +33,15 @@ class Office {
   findAll() {
     return this.offices;
   }
+
+    /*
+  * @param {id} id
+  * @ returns {Object} office Object
+  */
+  findOne(id) {
+    return this.offices.find(office => office.id === id);
+  }
+
 }
 
 export default new Office();

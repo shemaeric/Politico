@@ -36,6 +36,26 @@ const Office = {
     });
   },
 
+    /*
+* @param {Object} req
+* @param {Object} res
+* @retuns {Object} party object
+*/
+  getOne(req, res) {
+    const office = officeModel.findOne(req.params.id);
+    if (!office) {
+      return res.status(404).send({
+        status: 404,
+        message: 'office not found',
+      });
+    }
+
+    return res.status(200).send({
+      status: 200,
+      data: [office],
+    });
+  },
+
 };
 
 export default Office;
