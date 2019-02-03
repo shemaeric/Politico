@@ -19,6 +19,8 @@ app.get('/api/v1/parties', Party.getAll);
 app.get('/api/v1/parties/:id', Party.getOne);
 //update a party
 app.patch('/api/v1/parties/:id', Party.update);
+//delete a party
+app.delete('/api/v1/parties/:id', Party.delete);
 
 app.listen(3000)
 

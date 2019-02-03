@@ -57,6 +57,16 @@ class Party {
 
     return this.parties[index];
   }
+
+  /*
+  * @param {uuid} id
+  */
+  delete(id) {
+    const party = this.findOne(id);
+    const index = this.parties.indexOf(party);
+    this.parties.splice(index, 1);
+    return {};
+  }
 }
 
 export default new Party();
