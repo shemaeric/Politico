@@ -27,6 +27,12 @@ class Office {
     return newOffice;
   }
 
+  /*
+  * @returns {Object} returns all offices
+  */
+  findAll() {
+    return this.offices;
+  }
 }
 
 export default new Office();

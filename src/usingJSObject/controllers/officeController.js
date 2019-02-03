@@ -21,7 +21,20 @@ const Office = {
       message: 'Office Succefully Created',
       data: [office],
     });
-  }
+  },
+
+  /*
+* @param {Object} req
+* @param {Object} res
+* @returns {Object} Offices Array
+*/
+  getAll(req, res) {
+    const offices = officeModel.findAll();
+    return res.status(200).send({
+      status: 200,
+      data: [offices],
+    });
+  },
 
 };
 
