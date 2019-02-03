@@ -33,7 +33,27 @@ const Party = {
     return res.status(200).send({
       status : 200,
       data: [parties]
-    })
+    });
+  },
+
+  /*
+* @param {Object} req
+* @param {Object} res
+* @retuns {Object} party object
+*/
+  getOne(req, res) {
+    const party = partyModel.findOne(req.params.id);
+    if(!party) {
+      return res.status(404).send({
+        status : 404,
+        message : 'party not found'
+      });
+    }
+
+    return res.status(200).send({
+      status: 200,
+      data : [party]
+    });
   }
 
 

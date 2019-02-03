@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../server';
+import Party from '../../src/usingJSObject/models/partyModel';
 
 chai.use(chaiHttp);
 let expect = chai.expect;
@@ -14,6 +15,7 @@ describe('Create a Politico Party', () => {
     		"createdDate" : 23456,
     		"modifiedDate" : 2345
 		}
+		
 		chai.request(app)
 			.post('/api/v1/parties')
 			.send(data)
@@ -28,6 +30,7 @@ describe('Create a Politico Party', () => {
 	})
 	it('it should create a party', (done) => {
 		let data = {
+			"id" : 1,
 			"name": "democrats",
     		"hqAdress": "Washngton DC",
     		"logoUrl": "hiensisss",
@@ -58,5 +61,49 @@ describe('Get all Politico Parties', () => {
 				expect(res.body).to.be.an('Object');	
 			done();
 			})
-	})	
-})
+	});	
+});
+
+describe('Get a specific Politico Parties', () => {
+
+	it('it should fail to get a specific party', (done) => {
+		let data = {
+			"name" : "hie",
+			"hqAdress" : "kigali",
+    		"logoUrl": "hiensisss",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let party = Party.create(data);
+		chai.request(app)
+			.get('/api/v1/parties/dhfdafd')
+			.end((err, res) => {
+				expect(res.status).to.equal(404);
+				expect(res.body.message).to.equal('party not found');
+			done();
+			})
+		
+	});	
+
+	it('it should get a specific party', (done) => {
+		let data = {
+			"name" : "hie",
+			"hqAdress" : "kigali",
+    		"logoUrl": "hiensisss",
+    		"createdDate" : 23456,
+    		"modifiedDate" : 2345
+		}
+
+		let party = Party.create(data);
+		chai.request(app)
+			.get('/api/v1/parties/' + party.id)
+			.end((err, res) => {
+				expect(res.status).to.equal(200);
+				expect(res.body).to.be.an('Object');
+			done();
+			})
+		
+	});	
+});
+

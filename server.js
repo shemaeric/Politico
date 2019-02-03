@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
 app.post('/api/v1/parties', Party.create);
 // get all parties
 app.get('/api/v1/parties', Party.getAll);
+//get a specific party
+app.get('/api/v1/parties/:id', Party.getOne);
 
 app.listen(3000)
 
