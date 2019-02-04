@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require babel-core/register --timeout 5000 tests/usingJSObject/*.js --exit",
     "build": "babel server.js --out-dir build",
-    "dev-start": "babel-watch server.js",
+    "start": "babel-watch server.js",
     "lint": "eslint ./src --fix",
     "coverage":"nyc report --reporter=text-lcov | coveralls"
   },
