@@ -10,6 +10,9 @@
     "lint": "eslint ./src --fix",
     "coverage":"nyc report --reporter=text-lcov | coveralls"
   },
+  "engines" : {
+    "node" : "10.14.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shemaeric/Politico.git"
