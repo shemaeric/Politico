@@ -7,7 +7,7 @@ const Office = {
 * @param {Object} office Object
 */
 
-  create(req, res) {
+  createOf(req, res) {
     if (!req.body.name || !req.body.type) {
       return res.status(400).send({
         status: 400,
@@ -15,7 +15,7 @@ const Office = {
       });
     }
 
-    const office = officeModel.create(req.body);
+    const office = officeModel.createOffice(req.body);
     return res.status(201).send({
       status: 201,
       message: 'Office Succefully Created',
@@ -28,8 +28,8 @@ const Office = {
 * @param {Object} res
 * @returns {Object} Offices Array
 */
-  getAll(req, res) {
-    const offices = officeModel.findAll();
+  getOffices(req, res) {
+    const offices = officeModel.findAllOffices();
     return res.status(200).send({
       status: 200,
       data: [offices],
@@ -41,8 +41,8 @@ const Office = {
 * @param {Object} res
 * @retuns {Object} office object
 */
-  getOne(req, res) {
-    const office = officeModel.findOne(req.params.id);
+  getOffice(req, res) {
+    const office = officeModel.findOneOffice(req.params.id);
     if (!office) {
       return res.status(404).send({
         status: 404,
@@ -61,15 +61,15 @@ const Office = {
 * @param {Object} res
 * @returns {Object} update office
 */
-  update(req, res) {
-    const office = officeModel.findOne(req.params.id);
+  updatingOffice(req, res) {
+    const office = officeModel.findOneOffice(req.params.id);
     if (!office) {
       return res.status(404).send({
         status: 404,
         message: 'office not found',
       });
     }
-    const updatedOffice = officeModel.update(req.params.id, req.body);
+    const updatedOffice = officeModel.updateOffice(req.params.id, req.body);
     return res.status(200).send({
       status: 200,
       data: [updatedOffice],
@@ -81,8 +81,8 @@ const Office = {
 * @param {Object} res
 * @returns {Object} return status code and message for deleted
 */
-  delete(req, res) {
-    const office = officeModel.findOne(req.params.id);
+  deletingOffice(req, res) {
+    const office = officeModel.findOneOffice(req.params.id);
     if (!office) {
       return res.status(404).send({
         status: 404,
@@ -90,7 +90,7 @@ const Office = {
       });
     }
 
-    const del = officeModel.delete(req.params.id);
+    const del = officeModel.deleteOffice(req.params.id);
     return res.status(200).send({
       status: 200,
       data: [{ message: 'office deleted', data: [del] }],

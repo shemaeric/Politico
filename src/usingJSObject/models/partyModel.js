@@ -15,7 +15,7 @@ class Party {
 * returns {object} Party Object
 */
 
-  create(data) {
+  createParty(data) {
     const newParty = {
       id: uuid.v4(),
       name: data.name || '',
@@ -32,14 +32,14 @@ class Party {
   * @param {id} id
   * @ returns {Object} party Object
   */
-  findOne(id) {
+  findOneParty(id) {
     return this.parties.find(party => party.id === id);
   }
 
   /*
   * @returns {Object} returns all parties
   */
-  findAll() {
+  findAllParties() {
     return this.parties;
   }
 
@@ -47,8 +47,8 @@ class Party {
   * @param {uuid} id
   * @param {Object} data
   */
-  update(id, data) {
-    const party = this.findOne(id);
+  updateParty(id, data) {
+    const party = this.findOneParty(id);
     const index = this.parties.indexOf(party);
     this.parties[index].name = data.name || party.name;
     this.parties[index].hqAdress = data.hqAdress || party.hqAdress;
@@ -61,8 +61,8 @@ class Party {
   /*
   * @param {uuid} id
   */
-  delete(id) {
-    const party = this.findOne(id);
+  deleteParty(id) {
+    const party = this.findOneParty(id);
     const index = this.parties.indexOf(party);
     this.parties.splice(index, 1);
     return {};

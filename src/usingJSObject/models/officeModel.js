@@ -15,7 +15,7 @@ class Office {
 * returns {object} Office Object
 */
 
-  create(data) {
+  createOffice(data) {
     const newOffice = {
       id: uuid.v4(),
       name: data.name || '',
@@ -30,7 +30,7 @@ class Office {
   /*
   * @returns {Object} returns all offices
   */
-  findAll() {
+  findAllOffices() {
     return this.offices;
   }
 
@@ -38,7 +38,7 @@ class Office {
   * @param {id} id
   * @ returns {Object} office Object
   */
-  findOne(id) {
+  findOneOffice(id) {
     return this.offices.find(office => office.id === id);
   }
 
@@ -46,8 +46,8 @@ class Office {
   * @param {uuid} id
   * @param {Object} data
   */
-  update(id, data) {
-    const office = this.findOne(id);
+  updateOffice(id, data) {
+    const office = this.findOneOffice(id);
     const index = this.offices.indexOf(office);
     this.offices[index].name = data.name || office.name;
     this.offices[index].type = data.type || office.type;
@@ -59,8 +59,8 @@ class Office {
     /*
   * @param {uuid} id
   */
-  delete(id) {
-    const office = this.findOne(id);
+  deleteOffice(id) {
+    const office = this.findOneOffice(id);
     const index = this.offices.indexOf(office);
     this.offices.splice(index, 1);
     return {};

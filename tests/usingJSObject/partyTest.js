@@ -75,7 +75,7 @@ describe('Get a specific Politico Parties', () => {
     		"modifiedDate" : 2345
 		}
 
-		let party = Party.create(data);
+		let party = Party.createParty(data);
 		chai.request(app)
 			.get('/api/v1/parties/dhfdafd')
 			.end((err, res) => {
@@ -95,7 +95,7 @@ describe('Get a specific Politico Parties', () => {
     		"modifiedDate" : 2345
 		}
 
-		let party = Party.create(data);
+		let party = Party.createParty(data);
 		chai.request(app)
 			.get('/api/v1/parties/' + party.id)
 			.end((err, res) => {
@@ -118,7 +118,7 @@ describe('Update a Political Party', () => {
     		"modifiedDate" : 2345
 		}
 
-		let party = Party.create(data);
+		let party = Party.createParty(data);
 		chai.request(app)
 			.patch('/api/v1/parties/dhfdafd')
 			.send({ "name" : "demo"})
@@ -139,7 +139,7 @@ describe('Update a Political Party', () => {
     		"modifiedDate" : 2345
 		}
 
-		let party = Party.create(data);
+		let party = Party.createParty(data);
 		chai.request(app)
 			.patch('/api/v1/parties/' + party.id)
 			.send({"name" : "demo"})
@@ -163,7 +163,7 @@ describe('Delete a Political Party', () => {
     		"modifiedDate" : 2345
 		}
 
-		let party = Party.create(data);
+		let party = Party.createParty(data);
 		chai.request(app)
 			.delete('/api/v1/parties/dhfdafd')
 			.end((err, res) => {
@@ -183,7 +183,7 @@ describe('Delete a Political Party', () => {
     		"modifiedDate" : 2345
 		}
 
-		let party = Party.create(data);
+		let party = Party.createParty(data);
 		chai.request(app)
 			.delete('/api/v1/parties/' + party.id)
 			.end((err, res) => {

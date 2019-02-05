@@ -7,7 +7,7 @@ const Party = {
 * @param {Object} Party Object
 */
 
-  create(req, res) {
+  createPart(req, res) {
     if (!req.body.name || !req.body.hqAdress) {
       return res.status(400).send({
         status: 400,
@@ -15,7 +15,7 @@ const Party = {
       });
     }
 
-    const party = partyModel.create(req.body);
+    const party = partyModel.createParty(req.body);
     return res.status(201).send({
       status: 201,
       message: 'Party Succefully Created',
@@ -28,8 +28,8 @@ const Party = {
 * @param {Object} res
 * @returns {Object} parties Array
 */
-  getAll(req, res) {
-    const parties = partyModel.findAll();
+  getParties(req, res) {
+    const parties = partyModel.findAllParties();
     return res.status(200).send({
       status: 200,
       data: [parties],
@@ -41,8 +41,8 @@ const Party = {
 * @param {Object} res
 * @retuns {Object} party object
 */
-  getOne(req, res) {
-    const party = partyModel.findOne(req.params.id);
+  getParty(req, res) {
+    const party = partyModel.findOneParty(req.params.id);
     if (!party) {
       return res.status(404).send({
         status: 404,
@@ -61,15 +61,15 @@ const Party = {
 * @param {Object} res
 * @returns {Object} update party
 */
-  update(req, res) {
-    const party = partyModel.findOne(req.params.id);
+  updatingParty(req, res) {
+    const party = partyModel.findOneParty(req.params.id);
     if (!party) {
       return res.status(404).send({
         status: 404,
         message: 'party not found',
       });
     }
-    const updatedParty = partyModel.update(req.params.id, req.body);
+    const updatedParty = partyModel.updateParty(req.params.id, req.body);
     return res.status(200).send({
       status: 200,
       data: [updatedParty],
@@ -81,8 +81,8 @@ const Party = {
 * @param {Object} res
 * @returns {Object} return status code and message for deleted
 */
-  delete(req, res) {
-    const party = partyModel.findOne(req.params.id);
+  deletingParty(req, res) {
+    const party = partyModel.findOneParty(req.params.id);
     if (!party) {
       return res.status(404).send({
         status: 404,
@@ -90,7 +90,7 @@ const Party = {
       });
     }
 
-    const del = partyModel.delete(req.params.id);
+    const del = partyModel.deleteParty(req.params.id);
     return res.status(200).send({
       status: 200,
       message: 'party deleted',
