@@ -6,6 +6,10 @@ const app = express()
 
 app.use(express.json())
 
+app.get("/api/v1", (req, res) => {
+  res.json({ message: "Welcome to Politico API" });
+});
+
 // create a party
 app.post('/api/v1/parties', Party.create);
 // get all parties
