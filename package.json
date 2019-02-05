@@ -8,10 +8,10 @@
     "build": "babel server.js --out-dir build",
     "start": "babel-watch server.js",
     "lint": "eslint ./src --fix",
-    "coverage":"nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
-  "engines" : {
-    "node" : "10.14.1"
+  "engines": {
+    "node": "10.14.1"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "eslint-plugin-import": "^2.15.0",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.18.9",
     "nyc": "^13.1.0"
   },
   "dependencies": {

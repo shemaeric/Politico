@@ -1,1 +1,1 @@
-web: NODE_ENV=production node build/server.js
+web: NODE_ENV=production nodemon --exec babel-node server.js
