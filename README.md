@@ -44,6 +44,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
 		}
 	]
 }
+```
 
 `POST /parties`
 ```source-json
@@ -59,6 +60,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
 		"modifiedDate" : 1549401505876
 	}]
 }
+```
 
 `GET /parties/<party-id>`
 ```source-json
@@ -75,6 +77,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         }
     ]
 }
+```
 
 `PATCH /parties/<party-id>`
 ```source-json
@@ -91,6 +94,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         }
     ]
 }
+```
 
 `DELETE /parties/<party-id>`
 ```source-json
@@ -106,6 +110,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         }
     ]
 }
+```
 
 ## Office
 `POST /Offices`
@@ -123,6 +128,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         }
     ]
 }
+```
 
 `GET /offices`
 ```source-json
@@ -147,8 +153,9 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         ]
     ]
 }
+```
 
-`GET /offices/<office-id>
+`GET /offices/<office-id>`
 ```source-json
 {
     "status": 200,
@@ -162,6 +169,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         }
     ]
 }
+```
 
 `PATCH /offices/<office-id>`
 ```source-json
@@ -191,3 +199,4 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         }
     ]
 }
+```
