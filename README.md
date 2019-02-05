@@ -185,6 +185,7 @@ JSON Object is what is returned for each API endpoint, structure of return JSON 
         }
     ]
 }
+```
 
 `DELETE /offices/<office-id>`
 ```source-json
