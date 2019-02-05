@@ -27,8 +27,10 @@ app.patch('/api/v1/offices/:id', Office.update);
 //delete a office
 app.delete('/api/v1/offices/:id', Office.delete);
 
-app.listen(3000)
+const port = process.env.PORT || 3000;
 
-console.log('app listening to port', 3000);
+app.listen(port, () => {
+  console.log(`Server started on ${port}`);
+});
 
 export default app;
