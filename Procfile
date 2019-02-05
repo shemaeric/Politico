@@ -1,1 +1,1 @@
-web: NODE_ENV=production node --exec babel-node server.js
+web: NODE_ENV=production babel-watch server.js
