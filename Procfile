@@ -1,1 +1,1 @@
-web : npm run dev-start
+web: NODE_ENV=production babel-watch --exec babel-node server.js
