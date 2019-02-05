@@ -74,7 +74,7 @@ describe('Get a specific Government office', () => {
     		"modifiedDate" : 2345
 		}
 
-		let office = Office.create(data);
+		let office = Office.createOffice(data);
 		chai.request(app)
 			.get('/api/v1/offices/dhfdafd')
 			.end((err, res) => {
@@ -93,7 +93,7 @@ describe('Get a specific Government office', () => {
     		"modifiedDate" : 2345
 		}
 
-		let office = Office.create(data);
+		let office = Office.createOffice(data);
 		chai.request(app)
 			.get('/api/v1/offices/' + office.id)
 			.end((err, res) => {
@@ -116,7 +116,7 @@ describe('Update a Government Office', () => {
     		"modifiedDate" : 2345
 		}
 
-		let office = Office.create(data);
+		let office = Office.createOffice(data);
 		chai.request(app)
 			.patch('/api/v1/offices/dhfdafd')
 			.send({ "name" : "local office"})
@@ -136,7 +136,7 @@ describe('Update a Government Office', () => {
     		"modifiedDate" : 2345
 		}
 
-		let office = Office.create(data);
+		let office = Office.createOffice(data);
 		chai.request(app)
 			.patch('/api/v1/offices/' + office.id)
 			.send({"name" : "local office"})
@@ -160,7 +160,7 @@ describe('Delete a Government Office', () => {
     		"modifiedDate" : 2345
 		}
 
-		let office = Office.create(data);
+		let office = Office.createOffice(data);
 		chai.request(app)
 			.delete('/api/v1/offices/dhfdafd')
 			.end((err, res) => {
@@ -179,7 +179,7 @@ describe('Delete a Government Office', () => {
     		"modifiedDate" : 2345
 		}
 
-		let office = Office.create(data);
+		let office = Office.createOffice(data);
 		chai.request(app)
 			.delete('/api/v1/offices/' + office.id)
 			.end((err, res) => {
