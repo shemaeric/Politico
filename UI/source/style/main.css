@@ -22,10 +22,15 @@ header {
 
 }
 
+span {
+	font-size: 20px;
+	color : #9494a0;
+}
+
 .logo {
 	float: left;
 	margin-top: 7px;
-	margin-left: 50%;
+	margin-left: 40%;
 }
 
 .logo a{
@@ -149,6 +154,9 @@ label {
 }
 
 @media only screen and (max-width: 480px) {
+	span {
+		display: none;
+	}
 	.aside {
 		display: none;
 	}
@@ -313,6 +321,34 @@ label {
 .logout {
 	margin-top: 70px;
 	border-top: solid #111;
+}
+
+footer {
+	width: calc(100vh);
+	padding : 20px 40px;
+	background-color: #fff;
+}
+
+footer p {
+	margin-top: 5px;
+	margin-bottom: 30px;
+}
+
+@media only screen and (min-width: 1000px) {
+
+	footer {
+		width: 100%;
+		padding : 20px 40px;
+		background-color: #fff;
+		}
+
+		footer p {
+		display: block;
+		margin: 0 auto;
+		margin-left: 500px;
+		font-family: "Times New Roman", Times, serif;
+		font-size: 20px;
+		}
 }
 
 
