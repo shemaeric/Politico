@@ -3,7 +3,7 @@
 <head>
 	<title>Politico | Home</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="source/style//main2.css">
+	<link rel="stylesheet" type="text/css" href="source/style//vote.css">
 </head>
 <body>
 	<header>
@@ -11,7 +11,6 @@
 		<nav>
 			<ul>
 				<li><a href="index.html">Home</a></li>
-				<li><a href="#">Vote</a></li>
 				<li><a href="newcand.html" class="cand-btn">Become a Candidate</a></li>
 				<li><a href="profile.html" class="cand-btn">Profile</a></li>
 				<li><a href="#">Log Out</a></li>
@@ -19,142 +18,16 @@
 		</nav>
 	</header>
 	<main>
+		<div class="aside" id="aside">
+			<ul id="nav">
+				<li class="set">Offices</li>
+				<li><a href="#"  id="infoas"><img src="source/images/list.png"> State Office</a></li>
+				<li><a href="#" id="infoas"><img src="source/images/list.png">Local Office</a></li>
+				<li><a href="#" id="infoas"><img src="source/images/list.png">Legislative Office</a></li>
+				<li><a href="#" class="logout" ">LogOut</a></li>
+			</ul>
+		</div>
 		<section>
-			<div class="box">
-				<h1> Vote for Federal Office</h1>
-				<p>You Vote one Candidate for Each Office<p>
-
-						<table id="activity">
-						  <tr>
-						  	<th>Photo</th>
-						    <th>Candidate</th>
-						    <th>Party</th>
-						    <th>Age</th>
-						    <th>Vote</th>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Vital</td>
-						    <td>Republican</td>
-						    <td>44</td>
-						    <td>
-						    	<a href="#">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Oscar</td>
-						    <td>Democrats</td>
-						    <td>30</td>
-						    <td>
-						    	<a href="#">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Blaise</td>
-						    <td>National Party</td>
-						    <td>43</td>
-						    <td>
-						    	<a href="#">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Cloude</td>
-						    <td>People Party</td>
-						    <td>34</td>
-						    <td>
-						    	<a href="edit.html">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  
-						</table>
-			</div>
-
-			<div class="box">
-				<h1> Vote for Legislative Office</h1>
-				<p>You Vote one Candidate for Each Office<p>
-
-						<table id="activity">
-						  <tr>
-						  	<th>Photo</th>
-						    <th>Candidate</th>
-						    <th>Party</th>
-						    <th>Age</th>
-						    <th>Vote</th>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Vital</td>
-						    <td>Republican</td>
-						    <td>44</td>
-						    <td>
-						    	<a href="info.html">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Oscar</td>
-						    <td>Democrats</td>
-						    <td>30</td>
-						    <td>
-						    	<a href="#">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Blaise</td>
-						    <td>National Party</td>
-						    <td>43</td>
-						    <td>
-						    	<a href="#">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Cloude</td>
-						    <td>People Party</td>
-						    <td>34</td>
-						    <td>
-						    	<a href="edit.html">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  
-						</table>
-			</div>
 			<div class="box">
 				<h1> Vote for State Office</h1>
 				<p>You Vote one Candidate for Each Office<p>
@@ -173,7 +46,7 @@
 						    <td>Republican</td>
 						    <td>44</td>
 						    <td>
-						    	<a href="info.html">
+						    	<a href="#">
 						    		<div class="info" id="info">
 						    			<button class="btn">Vote</button>
 						    		</div>
@@ -222,74 +95,6 @@
 						  
 						</table>
 			</div>
-			<div class="box">
-				<h1> Vote for Local Government Office</h1>
-				<p>You Vote one Candidate for Each Office<p>
-
-						<table id="activity">
-						  <tr>
-						  	<th>Photo</th>
-						    <th>Candidate</th>
-						    <th>Party</th>
-						    <th>Age</th>
-						    <th>Vote</th>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Vital</td>
-						    <td>Republican</td>
-						    <td>44</td>
-						    <td>
-						    	<a href="info.html">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Oscar</td>
-						    <td>Democrats</td>
-						    <td>30</td>
-						    <td>
-						    	<a href="#">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Blaise</td>
-						    <td>National Party</td>
-						    <td>43</td>
-						    <td>
-						    	<a href="#">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  <tr>
-						  	<td><img src="source/images/pida.jpg"></td>
-						    <td>Cloude</td>
-						    <td>People Party</td>
-						    <td>34</td>
-						    <td>
-						    	<a href="edit.html">
-						    		<div class="info" id="info">
-						    			<button class="btn">Vote</button>
-						    		</div>
-						    	</a>
-						    </td>
-						  </tr>
-						  
-						</table>
-			</div>
-
 		</section>
 	</main>
 	<footer>
