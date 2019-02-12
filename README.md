@@ -7,6 +7,9 @@ Politico is a platform to help a Citizen to vote and Politicians to register as 
 
 # Getting Started
 
+Getting the Project in your local machine <br/>
+`git clone https://github.com/shemaeric/Politico` cd into the project `cd Politico` 
+
 Install dependencies <br/>
 `npm install`
 
