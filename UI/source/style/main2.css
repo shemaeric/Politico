@@ -47,22 +47,34 @@ header nav ul li a{
 @media only screen and (min-width: 1000px) {
 
 	header {
+		display: block;
 		width: 100%;
-		height: 100px;
+		height: 37px;
+		padding: 8px 2px;
+		padding-bottom: 0;
 	}
 	header .header-logo {
-		margin: 0;
+		width: 200px;
+		display: inline;
+		margin-top: 330px;
 		text-align: left;
-		padding: 20px 0 0 20px; 
 	}
 
+
 	header nav ul {
-		margin: 0 20px;
+		margin-right: 20px;
+		margin-top: 0;
+
 		float: right;
 	}
 
 	header nav ul li a{
 		font-size: 18px;
+	}
+
+	nav {
+		display: inline-block;
+		float: right;
 	}
 }
 
