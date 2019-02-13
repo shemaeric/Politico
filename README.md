@@ -5,7 +5,14 @@
 # Politico
 Politico is a platform to help a Citizen to vote and Politicians to register as Candidates and show their interests to run for Political Offices.(https://politic-api.herokuapp.com/api/v1/)
 
-# Getting Started
+# Prerequisites
+The required tools : 
+    * Node : 10.14.1 
+    * NPM : 6.4.1
+    * ESLINT 
+    * AIRBNB Style guide
+
+# Setting up Dev
 
 Getting the Project in your local machine <br/>
 `git clone https://github.com/shemaeric/Politico` cd into the project `cd Politico` 
