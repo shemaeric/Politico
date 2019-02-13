@@ -2,6 +2,10 @@
     "extends": "airbnb-base",
     "rules" : {
     	"eslint linebreak-style" : [0, "error", "windows"]
+    },
+    "env" : {
+    	"node" : true,
+    	"mocha" : true	
     }
     
     
