@@ -76,7 +76,7 @@ const Office = {
     });
   },
 
-   /*
+  /*
 * @param {Object} req
 * @param {Object} res
 * @returns {Object} return status code and message for deleted
