@@ -10,9 +10,7 @@ const expect = chai.expect;
 describe('/POST party', () => {
   it('should not create a party without all fields filled', (done) => {
     const data = {
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
+      logoUrl: 'hiensisss'
     };
 
     chai.request(app)
@@ -21,18 +19,15 @@ describe('/POST party', () => {
       .set('content-type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(400);
-        expect(res.body.message).to.equal('name and HeadQuater Address could not be empty');
+        expect(res.body.message).to.equal('Bad Request');
         done();
       });
   });
   it('it should create a party', (done) => {
     const data = {
-      id: 1,
       name: 'democrats',
       hqAdress: 'Washngton DC',
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
+      logoUrl: 'hiensisss'
     };
     chai.request(app)
       .post('/api/v1/parties')

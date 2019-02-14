@@ -21,17 +21,14 @@ describe('/POST office', () => {
       .set('content-type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(400);
-        expect(res.body.message).to.equal('name and Office Type could not be empty');
+        expect(res.body.message).to.equal('Bad Request');
         done();
       });
   });
   it('it should create a Government Office', (done) => {
     const data = {
-      id: 1,
       name: 'state office',
       type: 'state',
-      createdDate: 23456,
-      modifiedDate: 2345,
     };
     chai.request(app)
       .post('/api/v1/offices')
