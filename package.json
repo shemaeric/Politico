@@ -34,15 +34,16 @@
     "nyc": "^13.1.0"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.8",
+    "celebrate": "^9.0.2",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "express": "^4.16.4",
     "moment": "^2.24.0",
     "nodemon": "^1.18.9",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-watch": "^2.0.8",
     "uuid": "^3.3.2"
   }
 }

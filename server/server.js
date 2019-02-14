@@ -1,10 +1,15 @@
 import express from 'express';
-import routers from './routes/route.js';
+import routers from './routes/route';
+import joiErrors from './middlewares/joiErrors';
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routers);
+
+// use celebrate middleware to handle joi errors
+app.use(joiErrors());
 
 const port = process.env.PORT || 3000;
 
