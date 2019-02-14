@@ -7,8 +7,8 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 
 // Test the Create Office EndPoint
-describe('Create a Government Office', () => {
-  it('should not create a government office without all contents filled', (done) => {
+describe('/POST office', () => {
+  it('should not create a new government office without filling all fields', (done) => {
     const data = {
       type: 'state',
       createdDate: 23456,
@@ -39,7 +39,7 @@ describe('Create a Government Office', () => {
       .set('content-type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(201);
-        expect(res.body.data[0]).to.have.property('name');
+        expect(res.body.data).to.have.property('name');
         expect(res.body.message).to.equal('Office Succefully Created');
         done();
       });
@@ -47,7 +47,7 @@ describe('Create a Government Office', () => {
 });
 
 // test Get all offices endpoint
-describe('Get all Government offices', () => {
+describe('/GET all offices', () => {
   it('it should get all offices', (done) => {
     chai.request(app)
       .get('/api/v1/offices')
@@ -60,8 +60,8 @@ describe('Get all Government offices', () => {
 });
 
 // get a specific government office
-describe('Get a specific Government office', () => {
-  it('it should fail to get a specific office', (done) => {
+describe('/GET a single office', () => {
+  it('it should fail to get a specific office with invalid id', (done) => {
     const data = {
       name: 'state office',
       type: 'state',
@@ -99,7 +99,7 @@ describe('Get a specific Government office', () => {
 });
 
 // update a government office
-describe('Update a Government Office', () => {
+describe('/PATCH an office', () => {
   it('it should fail to Update an Office', (done) => {
     const data = {
       name: 'state office',
@@ -140,7 +140,7 @@ describe('Update a Government Office', () => {
 });
 
 // delete a government office
-describe('Delete a Government Office', () => {
+describe('/DELETE office', () => {
   it('it should fail to Delete an Office', (done) => {
     const data = {
       name: 'state office',

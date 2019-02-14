@@ -7,8 +7,8 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 
 // Test the Create Party EndPoint
-describe('Create a Politico Party', () => {
-  it('should not create a party without all contents filled', (done) => {
+describe('/POST party', () => {
+  it('should not create a party without all fields filled', (done) => {
     const data = {
       logoUrl: 'hiensisss',
       createdDate: 23456,
@@ -40,7 +40,7 @@ describe('Create a Politico Party', () => {
       .set('content-type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(201);
-        expect(res.body.data[0]).to.have.property('name');
+        expect(res.body.data).to.have.property('name');
         expect(res.body.message).to.equal('Party Succefully Created');
         done();
       });
@@ -48,7 +48,7 @@ describe('Create a Politico Party', () => {
 });
 
 // test Get all parties endpoint
-describe('Get all Politico Parties', () => {
+describe('/GET all parties', () => {
   it('it should get all parties', (done) => {
     chai.request(app)
       .get('/api/v1/parties')
@@ -60,8 +60,8 @@ describe('Get all Politico Parties', () => {
   });
 });
 
-describe('Get a specific Politico Parties', () => {
-  it('it should fail to get a specific party', (done) => {
+describe('/GET party', () => {
+  it('it should fail to get a specific party with invalid ID', (done) => {
     const data = {
       name: 'hie',
       hqAdress: 'kigali',
@@ -100,7 +100,7 @@ describe('Get a specific Politico Parties', () => {
   });
 });
 
-describe('Update a Political Party', () => {
+describe('/PATCH party', () => {
   it('it should fail to Update a party', (done) => {
     const data = {
       name: 'democrats',
@@ -142,7 +142,7 @@ describe('Update a Political Party', () => {
   });
 });
 
-describe('Delete a Political Party', () => {
+describe('/DELETE a party', () => {
   it('it should fail to Delete a party', (done) => {
     const data = {
       name: 'democrats',

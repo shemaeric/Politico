@@ -7,7 +7,7 @@ const Office = {
 * @param {Object} office Object
 */
 
-  createOf(req, res) {
+  createOffice(req, res) {
     if (!req.body.name || !req.body.type) {
       return res.status(400).send({
         status: 400,
@@ -19,7 +19,7 @@ const Office = {
     return res.status(201).send({
       status: 201,
       message: 'Office Succefully Created',
-      data: [office],
+      data: office,
     });
   },
 
@@ -52,7 +52,7 @@ const Office = {
 
     return res.status(200).send({
       status: 200,
-      data: [office],
+      data: office,
     });
   },
 
@@ -61,7 +61,7 @@ const Office = {
 * @param {Object} res
 * @returns {Object} update office
 */
-  updatingOffice(req, res) {
+  updateOffice(req, res) {
     const office = officeModel.findOneOffice(req.params.id);
     if (!office) {
       return res.status(404).send({
@@ -72,7 +72,7 @@ const Office = {
     const updatedOffice = officeModel.updateOffice(req.params.id, req.body);
     return res.status(200).send({
       status: 200,
-      data: [updatedOffice],
+      data: updatedOffice,
     });
   },
 
@@ -81,7 +81,7 @@ const Office = {
 * @param {Object} res
 * @returns {Object} return status code and message for deleted
 */
-  deletingOffice(req, res) {
+  deleteOffice(req, res) {
     const office = officeModel.findOneOffice(req.params.id);
     if (!office) {
       return res.status(404).send({
@@ -93,7 +93,7 @@ const Office = {
     const del = officeModel.deleteOffice(req.params.id);
     return res.status(200).send({
       status: 200,
-      data: [{ message: 'office deleted', data: [del] }],
+      data: { message: 'office deleted', data: [del] },
     });
   },
 
