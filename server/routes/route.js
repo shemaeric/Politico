@@ -8,7 +8,7 @@ import validateOffice from '../validators/office';
 const router = express.Router();
 
 // Home
-router.get('/api/v1', () => {
+router.get('/api/v1', (req,res) => {
 	res.send({'message' : 'Welcome to Politico API'});
 });
 // create a party
