@@ -10,7 +10,7 @@ const expect = chai.expect;
 describe('/POST party', () => {
   it('should not create a party without all fields filled', (done) => {
     const data = {
-      logoUrl: 'hiensisss'
+      logoUrl: 'hiensisss',
     };
 
     chai.request(app)
@@ -27,7 +27,7 @@ describe('/POST party', () => {
     const data = {
       name: 'democrats',
       hqAdress: 'Washngton DC',
-      logoUrl: 'hiensisss'
+      logoUrl: 'hiensisss',
     };
     chai.request(app)
       .post('/api/v1/parties')
