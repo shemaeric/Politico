@@ -56,7 +56,7 @@ class Office {
     return this.offices[index];
   }
 
-    /*
+  /*
   * @param {uuid} id
   */
   deleteOffice(id) {
