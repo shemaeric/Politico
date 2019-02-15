@@ -10,7 +10,7 @@ const router = express.Router();
 // Home
 router.get('/api/v1', () => {
 	res.send({'message' : 'Welcome to Politico API'});
-})
+});
 // create a party
 router.post('/api/v1/parties',
   celebrate(validateParty.createParty), Party.createParty);
