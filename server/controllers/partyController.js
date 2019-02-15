@@ -7,7 +7,7 @@ const Party = {
 * @param {Object} Party Object
 */
 
-  createPart(req, res) {
+  createParty(req, res) {
     if (!req.body.name || !req.body.hqAdress) {
       return res.status(400).send({
         status: 400,
@@ -19,7 +19,7 @@ const Party = {
     return res.status(201).send({
       status: 201,
       message: 'Party Succefully Created',
-      data: [party],
+      data: party,
     });
   },
 
@@ -52,7 +52,7 @@ const Party = {
 
     return res.status(200).send({
       status: 200,
-      data: [party],
+      data: party,
     });
   },
 
@@ -61,7 +61,7 @@ const Party = {
 * @param {Object} res
 * @returns {Object} update party
 */
-  updatingParty(req, res) {
+  updateParty(req, res) {
     const party = partyModel.findOneParty(req.params.id);
     if (!party) {
       return res.status(404).send({
@@ -72,7 +72,7 @@ const Party = {
     const updatedParty = partyModel.updateParty(req.params.id, req.body);
     return res.status(200).send({
       status: 200,
-      data: [updatedParty],
+      data: updatedParty,
     });
   },
 
@@ -81,7 +81,7 @@ const Party = {
 * @param {Object} res
 * @returns {Object} return status code and message for deleted
 */
-  deletingParty(req, res) {
+  deleteParty(req, res) {
     const party = partyModel.findOneParty(req.params.id);
     if (!party) {
       return res.status(404).send({
@@ -94,7 +94,7 @@ const Party = {
     return res.status(200).send({
       status: 200,
       message: 'party deleted',
-      data: [{ message: 'party deleted', data: [del] }],
+      data: { message: 'party deleted', data: [del] },
     });
   },
 
