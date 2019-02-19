@@ -35,6 +35,7 @@ class User {
       return false;
     }
   }
+
 }
 
 export default new User();
