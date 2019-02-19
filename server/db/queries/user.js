@@ -1,7 +1,7 @@
 const createTableUsers = `
   CREATE TABLE IF NOT EXISTS
     users(
-      id UUID PRIMARY KEY,
+      id SERIAL PRIMARY KEY,
       firstName VARCHAR(255) NOT NULL,
       lastName VARCHAR(255) NOT NULL,
       otherName VARCHAR(255),
@@ -32,5 +32,5 @@ const dropTableUsers = 'DROP TABLE IF EXISTS users';
 export default {
   createTableUsers,
   insertUser,
-  dropTableUsers
+  dropTableUsers,
 };

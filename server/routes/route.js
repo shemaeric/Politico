@@ -4,12 +4,14 @@ import Party from '../controllers/partyController';
 import Office from '../controllers/officeController';
 import validateParty from '../validators/party';
 import validateOffice from '../validators/office';
+import User from '../controllers/users';
+import validateUser from '../validators/user';
 
 const router = express.Router();
 
 // Home
-router.get('/api/v1', (req,res) => {
-	res.send({'message' : 'Welcome to Politico API'});
+router.get('/api/v1', (req, res) => {
+  res.send({ message: 'Welcome to Politico API' });
 });
 // create a party
 router.post('/api/v1/parties',
@@ -32,5 +34,8 @@ router.get('/api/v1/offices/:id', Office.getOffice);
 router.patch('/api/v1/offices/:id', celebrate(validateOffice.updateOffice), Office.updateOffice);
 // delete a office
 router.delete('/api/v1/offices/:id', Office.deleteOffice);
+
+// create a user
+router.post('/api/v1/signup', celebrate(validateUser.createUser), User.register);
 
 export default router;
