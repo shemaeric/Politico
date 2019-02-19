@@ -5,8 +5,7 @@ import Pool from '../db/index';
 
 
 class User {
-
-	// Register the User
+  // Register the User
   static async register(req, res) {
     const newUser = Users.createUser(req.body);
     const token = Auth.generateToken(req.body.id);
@@ -25,9 +24,7 @@ class User {
         }],
       });
     });
-  };
-
-  // login the user
+  }
   static async login (req,res) {
   	const {email, password} = req.body;
   	const queryText = ` SELECT * FROM users WHERE email = $1 LIMIT 1`;
@@ -62,5 +59,4 @@ class User {
   		});
   };
 }
-
 export default User;

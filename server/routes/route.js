@@ -35,8 +35,8 @@ router.patch('/api/v1/offices/:id', celebrate(validateOffice.updateOffice), Offi
 // delete a office
 router.delete('/api/v1/offices/:id', Office.deleteOffice);
 
-// // create a user
-// router.post('/api/v1/signup', celebrate(validateUser.createUser), User.register);
+// create a user
+router.post('/api/v1/signup', celebrate(validateUser.createUser), User.register);
 
 // create a user
 router.post('/api/v1/signin', User.login);
