@@ -5,8 +5,7 @@ import Pool from '../db/index';
 
 
 class User {
-
-	// Register the User
+  // Register the User
   static async register(req, res) {
     const newUser = Users.createUser(req.body);
     const token = Auth.generateToken(req.body.id);
@@ -25,7 +24,6 @@ class User {
         }],
       });
     });
-
   };
 
   // login the user
