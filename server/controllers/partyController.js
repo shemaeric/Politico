@@ -1,3 +1,6 @@
+/* eslint consistent-return: 0 */
+/* eslint no-shadow: 0 */
+import moment from 'moment';
 import partyModel from '../models/partyModel';
 
 const Party = {
@@ -16,11 +19,11 @@ const Party = {
     }
 
     const party = partyModel.createParty(req.body);
-    return res.status(201).send({
+    party.then(party => res.status(201).send({
       status: 201,
       message: 'Party Succefully Created',
       data: party,
-    });
+    }));
   },
 
   /*
@@ -30,10 +33,10 @@ const Party = {
 */
   getParties(req, res) {
     const parties = partyModel.findAllParties();
-    return res.status(200).send({
+    parties.then(parties => res.status(200).send({
       status: 200,
-      data: [parties],
-    });
+      data: parties.rows,
+    }));
   },
 
   /*
@@ -41,19 +44,25 @@ const Party = {
 * @param {Object} res
 * @retuns {Object} party object
 */
-  getParty(req, res) {
-    const party = partyModel.findOneParty(req.params.id);
-    if (!party) {
+  async getParty(req, res) {
+    const party = await partyModel.findOneParty(req.params.id);
+    try {
+      if (!party || party.rows.length === 0) {
+        return res.status(404).send({
+          status: 404,
+          message: 'party not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: party.rows,
+      });
+    } catch (error) {
       return res.status(404).send({
         status: 404,
         message: 'party not found',
       });
     }
-
-    return res.status(200).send({
-      status: 200,
-      data: party,
-    });
   },
 
   /*
@@ -61,19 +70,35 @@ const Party = {
 * @param {Object} res
 * @returns {Object} update party
 */
-  updateParty(req, res) {
-    const party = partyModel.findOneParty(req.params.id);
-    if (!party) {
-      return res.status(404).send({
-        status: 404,
-        message: 'party not found',
+  async updateParty(req, res) {
+    const party = await partyModel.findOneParty(req.params.id);
+    try {
+      if (!party || party.rows.length === 0) {
+        return res.status(404).send({
+          status: 404,
+          message: 'party not found',
+        });
+      }
+
+      const data = [
+        req.body.name || party.rows[0].name,
+        req.body.hqAdress || party.rows[0].hqadress,
+        req.body.logUurl || party.rows[0].logourl,
+        moment(new Date()),
+        req.params.id,
+      ];
+
+      const updatedParty = await partyModel.updateParty(data);
+      return res.status(200).send({
+        status: 200,
+        data: updatedParty,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        message: 'Error While updating',
       });
     }
-    const updatedParty = partyModel.updateParty(req.params.id, req.body);
-    return res.status(200).send({
-      status: 200,
-      data: updatedParty,
-    });
   },
 
   /*
@@ -81,20 +106,20 @@ const Party = {
 * @param {Object} res
 * @returns {Object} return status code and message for deleted
 */
-  deleteParty(req, res) {
-    const party = partyModel.findOneParty(req.params.id);
-    if (!party) {
+  async deleteParty(req, res) {
+    const party = await partyModel.findOneParty(req.params.id);
+    if (!party || party.rows.length === 0) {
       return res.status(404).send({
         status: 404,
-        message: 'Party not found',
+        message: 'party not found',
       });
     }
-
-    const del = partyModel.deleteParty(req.params.id);
+    const id = [req.params.id];
+    const delet = await partyModel.deleteParty(id);
     return res.status(200).send({
       status: 200,
       message: 'party deleted',
-      data: { message: 'party deleted', data: [del] },
+      data: party.rows[0],
     });
   },
 
