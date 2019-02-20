@@ -38,7 +38,7 @@ router.delete('/api/v1/parties/:id', Party.deleteParty);
 // // create a user
 // router.post('/api/v1/signup', celebrate(validateUser.createUser), User.register);
 
-// create a user
-router.post('/api/v1/signin', User.login);
+// // create a user
+// router.post('/api/v1/signin', User.login);
 
 export default router;
