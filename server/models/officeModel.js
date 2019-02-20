@@ -1,69 +1,85 @@
 import moment from 'moment';
 import uuid from 'uuid';
+import Pool from '../db/index';
 
 class Office {
-  /* build a constructor
-*{object} data
-*/
-
-
-  constructor() {
-    this.offices = [];
-  }
 
   /*
 * returns {object} Office Object
 */
 
-  createOffice(data) {
-    const newOffice = {
-      id: uuid.v4(),
-      name: data.name || '',
-      type: data.type || '',
-      createdDate: moment.now(),
-      modifiedDate: moment.now(),
-    };
-    this.offices.push(newOffice);
-    return newOffice;
+  async createOffice(data) {
+    this.newOffice = [
+      data.name,
+      data.type
+    ];
+
+    try {
+      const office = await Pool.query(`INSERT INTO 
+        offices(
+        "name",
+        "type"
+        ) VALUES($1, $2) returning * `,
+      this.newOffice);
+      return office.rows[0];
+    } catch (err) {
+      return false;
+    }
   }
 
   /*
   * @returns {Object} returns all offices
   */
-  findAllOffices() {
-    return this.offices;
+  async findAllOffices() {
+    const findAllQuery = 'SELECT * FROM offices';
+    try {
+      const findAllOffices = await Pool.query(findAllQuery);
+      return findAllOffices;
+    } catch (err) {
+      return false;
+    }
   }
 
   /*
   * @param {id} id
   * @ returns {Object} office Object
   */
-  findOneOffice(id) {
-    return this.offices.find(office => office.id === id);
+  async findOneOffice(id) {
+    const findOneQuery = 'SELECT * FROM offices WHERE id = $1';
+    try {
+      const findOneOffice = await Pool.query(findOneQuery, [id]);
+      return findOneOffice;
+    } catch (err) {
+      return false;
+    }
   }
 
   /*
   * @param {uuid} id
   * @param {Object} data
   */
-  updateOffice(id, data) {
-    const office = this.findOneOffice(id);
-    const index = this.offices.indexOf(office);
-    this.offices[index].name = data.name || office.name;
-    this.offices[index].type = data.type || office.type;
-    this.offices[index].modifiedDate = moment.now();
-
-    return this.offices[index];
+  async updateOffice(data) {
+    const updateOfficeQuery = `UPDATE offices
+      SET name=$1, type=$2,updateddate=$3 WHERE id=$4 returning *`;
+    try {
+      const updatedOffice = await Pool.query(updateOfficeQuery, data);
+      return updatedOffice.rows[0];
+    } catch (err) {
+      return false;
+    }
   }
 
   /*
   * @param {uuid} id
   */
-  deleteOffice(id) {
-    const office = this.findOneOffice(id);
-    const index = this.offices.indexOf(office);
-    this.offices.splice(index, 1);
-    return {};
+  async deleteOffice(id) {
+    const deleteOfficeQuery = 'DELETE FROM offices WHERE id=$1 returning *';
+    try {
+      const deletedOffice = await Pool.query(deleteOfficeQuery, id);
+      return {};
+    } catch (err) {
+      return false;
+    }
   }
 }
 

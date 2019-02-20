@@ -1,4 +1,5 @@
 import officeModel from '../models/officeModel';
+import moment from 'moment';
 
 const Office = {
 /*
@@ -11,16 +12,16 @@ const Office = {
     if (!req.body.name || !req.body.type) {
       return res.status(400).send({
         status: 400,
-        message: 'name and Office Type could not be empty',
+        message: 'name and Type could not be empty',
       });
     }
 
     const office = officeModel.createOffice(req.body);
-    return res.status(201).send({
+    office.then(office => res.status(201).send({
       status: 201,
       message: 'Office Succefully Created',
       data: office,
-    });
+    }));
   },
 
   /*
@@ -30,10 +31,10 @@ const Office = {
 */
   getOffices(req, res) {
     const offices = officeModel.findAllOffices();
-    return res.status(200).send({
+    offices.then(offices => res.status(200).send({
       status: 200,
-      data: [offices],
-    });
+      data: offices.rows,
+    }));
   },
 
   /*
@@ -41,19 +42,25 @@ const Office = {
 * @param {Object} res
 * @retuns {Object} office object
 */
-  getOffice(req, res) {
-    const office = officeModel.findOneOffice(req.params.id);
-    if (!office) {
+  async getOffice(req, res) {
+    const office = await officeModel.findOneOffice(req.params.id);
+    try {
+      if (!office || office.rows.length === 0) {
+        return res.status(404).send({
+          status: 404,
+          message: 'office not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: office.rows,
+      });
+    } catch (error) {
       return res.status(404).send({
         status: 404,
         message: 'office not found',
       });
     }
-
-    return res.status(200).send({
-      status: 200,
-      data: office,
-    });
   },
 
   /*
@@ -61,19 +68,34 @@ const Office = {
 * @param {Object} res
 * @returns {Object} update office
 */
-  updateOffice(req, res) {
-    const office = officeModel.findOneOffice(req.params.id);
-    if (!office) {
-      return res.status(404).send({
-        status: 404,
-        message: 'office not found',
+  async updateOffice(req, res) {
+    const office = await officeModel.findOneOffice(req.params.id);
+    try {
+      if (!office || office.rows.length === 0) {
+        return res.status(404).send({
+          status: 404,
+          message: 'office not found',
+        });
+      }
+
+      const data = [
+        req.body.name || office.rows[0].name,
+        req.body.type || office.rows[0].type,
+        moment(new Date()),
+        req.params.id,
+      ];
+
+      const updatedOffice = await officeModel.updateOffice(data);
+      return res.status(200).send({
+        status: 200,
+        data: updatedOffice,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        message: 'Error While updating',
       });
     }
-    const updatedOffice = officeModel.updateOffice(req.params.id, req.body);
-    return res.status(200).send({
-      status: 200,
-      data: updatedOffice,
-    });
   },
 
   /*
@@ -81,19 +103,20 @@ const Office = {
 * @param {Object} res
 * @returns {Object} return status code and message for deleted
 */
-  deleteOffice(req, res) {
-    const office = officeModel.findOneOffice(req.params.id);
-    if (!office) {
+  async deleteOffice(req, res) {
+    const office = await officeModel.findOneOffice(req.params.id);
+    if (!office || office.rows.length === 0) {
       return res.status(404).send({
         status: 404,
-        message: 'Office not found',
+        message: 'office not found',
       });
     }
-
-    const del = officeModel.deleteOffice(req.params.id);
+    const id = [req.params.id];
+    const delet = await officeModel.deleteOffice(id);
     return res.status(200).send({
       status: 200,
-      data: { message: 'office deleted', data: [del] },
+      message: 'office deleted',
+      data: office.rows[0],
     });
   },
 
