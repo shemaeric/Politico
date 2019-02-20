@@ -70,3 +70,7 @@ class Party {
 }
 
 export default new Party();
+
+// name of the office is arleady taken
+// returnin an array for some staffs
+// change to lower cases on comparing the offices with joi convention
