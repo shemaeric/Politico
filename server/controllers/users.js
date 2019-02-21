@@ -30,7 +30,6 @@ class User {
   static async login (req,res) {
   	const {email, password} = req.body;
   	const queryText = ` SELECT * FROM users WHERE email = $1 LIMIT 1`;
-
   	const data = [email];
   	Pool.query(queryText, data)
   		.then(response => {

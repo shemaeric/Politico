@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import queryUser from './queries/user';
+import queryParty from './queries/party';
 
 dotenv.config();
 
@@ -17,8 +18,10 @@ pool.on('connect', () => {
 const dbInit = {
 
   createTableUsers: () => {
-    const queryText = queryUser.createTableUsers;
-    pool.query(queryText)
+    // const queryText = queryUser.createTableUsers;
+    const queryTextP = queryParty.createTableParties;
+    // pool.query(queryText)
+    pool.query(queryTextP)
       .then(() => {
         pool.end();
       })
