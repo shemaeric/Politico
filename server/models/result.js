@@ -12,7 +12,6 @@ class Result {
       const result = await Pool.query(resultQuery, [id]);
       return result;
     } catch (err) {
-      console.log(err);
       return false;
     }
   }

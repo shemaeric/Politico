@@ -12,34 +12,70 @@ dotenv.config();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
-
-
 pool.on('connect', () => {
   console.log('connected to the db');
 });
 
-
-const dbInit = {
-
-  createTableUsers: () => {
-    // const queryText = queryUser.createTableUsers;
-    const queryTextP = queryVote.createVote;
-    // pool.query(queryText)
-    pool.query(queryTextP)
-      .then(() => {
-        pool.end();
-      })
-      .catch((err) => {
-        console.log(err);
-        pool.end();
-      });
-  },
-
-  dbInit() {
-    this.createTableUsers();
-  },
-
+const createTableUsers = async () => {
+  const queryText = queryUser.createTableUsers;
+  await pool.query(queryText)
+    .then(() => {
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+const createTableParty = async () => {
+  const queryText = queryParty.createTableParties;
+  await pool.query(queryText)
+    .then(() => {
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+const createTableOffice = async () => {
+  const queryText = queryOffice.createTableOffices;
+  await pool.query(queryText)
+    .then(() => {
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+const createTableCandidate = async () => {
+  const queryText = queryCand.createCandidates;
+  await pool.query(queryText)
+    .then(() => {
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+const createTableVote = async () => {
+  const queryText = queryVote.createVote;
+  await pool.query(queryText)
+    .then(() => {
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 
-export default dbInit;
+(async() => {
+  await createTableUsers();
+  await createTableParty();
+  await createTableOffice();
+  await createTableCandidate();
+  await createTableVote();
+  pool.end();
+  console.log('Tables has been created');
+})().catch((err) => {
+  console.log(err);
+});

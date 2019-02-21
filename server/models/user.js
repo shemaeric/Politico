@@ -15,6 +15,7 @@ class User {
       data.phone,
       password,
       data.passport,
+      data.isadmin,
     ];
 
     try {
@@ -26,8 +27,9 @@ class User {
       "email",
       "phone",
       "password",
-      "passport"
-      ) VALUES($1, $2, $3, $4, $5, $6, $7) 
+      "passport",
+      "isadmin"
+      ) VALUES($1, $2, $3, $4, $5, $6, $7, $8) 
       returning *`,
       this.newUser);
       return user.rows[0];
