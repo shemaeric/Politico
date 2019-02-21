@@ -3,6 +3,9 @@ import dotenv from 'dotenv';
 import queryUser from './queries/user';
 import queryParty from './queries/party';
 import queryOffice from './queries/office';
+import queryCand from './queries/candReg';
+import queryVote from './queries/vote';
+
 
 dotenv.config();
 
@@ -20,7 +23,7 @@ const dbInit = {
 
   createTableUsers: () => {
     // const queryText = queryUser.createTableUsers;
-    const queryTextP = queryOffice.createTableOffices;
+    const queryTextP = queryVote.createVote;
     // pool.query(queryText)
     pool.query(queryTextP)
       .then(() => {

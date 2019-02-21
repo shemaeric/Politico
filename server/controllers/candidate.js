@@ -23,9 +23,13 @@ const Candidate = {
         req.body.candidate,
         req.body.id,
       ];
-
       const candid = await candidate.createCandidate(data);
-      console.log(candid);
+      if(!candid){
+        return res.status(400).send({
+          status : 400,
+          error : 'A candidate would not be created'
+        })
+      }
       return res.status(201).send({
         status: 201,
         data: [{
@@ -34,7 +38,6 @@ const Candidate = {
         }],
       });
     } catch (error) {
-      console.log(error);
       return res.status(500).send({
         status: 500,
         message: 'Error While updating',
