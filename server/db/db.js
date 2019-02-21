@@ -2,6 +2,7 @@ import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import queryUser from './queries/user';
 import queryParty from './queries/party';
+import queryOffice from './queries/office';
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ const dbInit = {
 
   createTableUsers: () => {
     // const queryText = queryUser.createTableUsers;
-    const queryTextP = queryParty.createTableParties;
+    const queryTextP = queryOffice.createTableOffices;
     // pool.query(queryText)
     pool.query(queryTextP)
       .then(() => {
