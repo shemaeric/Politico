@@ -38,19 +38,14 @@ router.get('/api/v1/offices/:id', Office.getOffice);
 router.patch('/api/v1/offices/:id',celebrate(validateOffice.updateOffice), Office.updateOffice);
 // delete a office
 router.delete('/api/v1/offices/:id',Office.deleteOffice);
-
 // create a user
 router.post('/api/v1/auth/signup', celebrate(validateUser.createUser), User.register);
-
 // create a user
 router.post('/api/v1/auth/signin', User.login);
-
 // create candidate
 router.post('/api/v1/offices/:id/register', Candidate.createCandidate);
-
 // Vote
 router.post('/api/v1/vote', Vote.createVote);
-
 // view result
 router.get('/api/v1/offices/:id/result', Result.result);
 

@@ -21,6 +21,12 @@ const Party = {
       });
     }
     const party = partyModel.createParty(req.body);
+    const name = partyModel.validateParty(req.body.name);
+    name.then(name => {
+      if(!name) {
+      return res.send({error : 'Party name already exists'});
+      }
+    });
     party.then(party => res.status(201).send({
       status: 201,
       message: 'Party Succefully Created',

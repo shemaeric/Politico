@@ -81,6 +81,17 @@ class Office {
       return false;
     }
   }
+
+  async validateOffice(name) {
+    const query = 'SELECT * FROM offices WHERE name = $1'
+    try{
+      const validateName = await Pool.query(query, name);
+      const rows = validateName.rowCount;
+      return rows;
+    } catch(err) {
+      return false;
+    }
+  }
 }
 
 export default new Office();

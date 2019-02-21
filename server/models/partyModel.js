@@ -23,6 +23,10 @@ class Party {
         "logourl"
         ) VALUES($1, $2, $3) returning * `,
       this.newParty);
+
+      if(party.rows[0].name === data.name) {
+        return false;
+      }
       return party.rows[0];
     } catch (err) {
       return false;
@@ -80,6 +84,17 @@ class Party {
       const deletedParty = await Pool.query(deletePartyQuery, id);
       return {};
     } catch (err) {
+      return false;
+    }
+  }
+
+  async validateParty(name) {
+    const query = 'SELECT * FROM parties WHERE name = $1'
+    try{
+      const validateName = await Pool.query(query, name);
+      const rows = validateName.rowCount;
+      return rows;
+    } catch(err) {
       return false;
     }
   }
