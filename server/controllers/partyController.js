@@ -2,6 +2,9 @@
 /* eslint no-shadow: 0 */
 import moment from 'moment';
 import partyModel from '../models/partyModel';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const Party = {
 /*
@@ -17,8 +20,13 @@ const Party = {
         message: 'name and HeadQuater Address could not be empty',
       });
     }
-
     const party = partyModel.createParty(req.body);
+    const name = partyModel.validateParty(req.body.name);
+    name.then(name => {
+      if(!name) {
+      return res.send({error : 'Party name already exists'});
+      }
+    });
     party.then(party => res.status(201).send({
       status: 201,
       message: 'Party Succefully Created',

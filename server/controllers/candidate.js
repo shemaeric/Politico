@@ -21,9 +21,8 @@ const Candidate = {
 
       const data = [
         req.body.candidate,
-        req.body.office
+        req.body.id,
       ];
-
       const candid = await candidate.createCandidate(data);
       if(!candid){
         return res.status(400).send({
@@ -38,7 +37,6 @@ const Candidate = {
           user : candid.candidate,
         }],
       });
-      
     } catch (error) {
       return res.status(500).send({
         status: 500,

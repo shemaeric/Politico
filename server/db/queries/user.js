@@ -9,6 +9,7 @@ const createTableUsers = `
       phone VARCHAR(255),
       passport VARCHAR(255),
       password VARCHAR(255),
+      isAdmin VARCHAR(255),
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
       updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 
@@ -23,6 +24,7 @@ const insertUser = `INSERT INTO users(
   phone,
   passport,
   password,
+  isAdmin,
   createdAt,
   updatedAt
 ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT DO NOTHING returning *`;

@@ -9,6 +9,7 @@ const createUser = {
     phone: Validate.Joi.string().required().trim(),
     passport: Validate.Joi.string().required().trim(),
     password: Validate.Joi.string().required().trim(),
+    isadmin: Validate.Joi.string().required().trim(),
   },
 };
 
