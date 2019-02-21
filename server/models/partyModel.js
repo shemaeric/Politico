@@ -8,7 +8,7 @@ class Party {
 * returns {object} Party Object
 */
 
-  async createParty(id, data) {
+  async createParty(data) {
     this.newParty = [
       data.name,
       data.hqAdress,
