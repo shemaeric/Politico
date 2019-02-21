@@ -9,6 +9,7 @@ import validateUser from '../validators/user';
 import Auth from '../helpers/auth';
 import Candidate from '../controllers/candidate';
 import Vote from '../controllers/vote';
+import Result from '../controllers/result';
 
 const router = express.Router();
 
@@ -49,5 +50,8 @@ router.post('/api/v1/offices/:id/register', Candidate.createCandidate);
 
 // Vote
 router.post('/api/v1/vote', Vote.createVote);
+
+// view result
+router.get('/api/v1/offices/:id/result', Result.result);
 
 export default router;
