@@ -1,10 +1,11 @@
 const createCandidates = `
   CREATE TABLE IF NOT EXISTS
     candidates(
-      id SERIAL PRIMARY KEY,
+      id SERIAL UNIQUE,
       candidate INTEGER REFERENCES users(id) ON DELETE CASCADE,
       office INTEGER REFERENCES offices(id) ON DELETE CASCADE,
-      createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (candidate,office )
 
     )`;
 

@@ -1,26 +1,29 @@
 /* eslint class-methods-use-this: 0 */
 import Pool from '../db/index';
 
-class Candidate {
+class Vote {
   /*
 * returns {object} Party Object
 */
 
-  async createCandidate(data) {
-    this.newCandidate = [
+  async createVote(data) {
+    this.newVote = [
       data[0],
-      data[1]
+      data[1],
+      data[2]
     ];
 
     try {
-      const candidate = await Pool.query(`INSERT INTO 
-        candidates(
+      const vote = await Pool.query(`INSERT INTO 
+        votes(
         "candidate",
-        "office"
-        ) VALUES($1, $2) returning * `,
-      this.newCandidate);
-      return candidate.rows[0];
+        "office",
+        "users"
+        ) VALUES($1, $2, $3) returning * `,
+      this.newVote);
+      return vote.rows[0];
     } catch (err) {
+      console.log(err);
       return false;
     }
   }
@@ -28,7 +31,7 @@ class Candidate {
  
 }
 
-export default new Candidate();
+export default new Vote();
 
 // // name of the office is arleady taken
 // // returnin an array for some staffs

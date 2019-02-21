@@ -21,11 +21,16 @@ const Candidate = {
 
       const data = [
         req.body.candidate,
-        req.body.id,
+        req.body.office
       ];
 
       const candid = await candidate.createCandidate(data);
-      console.log(candid);
+      if(!candid){
+        return res.status(400).send({
+          status : 400,
+          error : 'A candidate would not be created'
+        })
+      }
       return res.status(201).send({
         status: 201,
         data: [{
@@ -33,8 +38,8 @@ const Candidate = {
           user : candid.candidate,
         }],
       });
+      
     } catch (error) {
-      console.log(error);
       return res.status(500).send({
         status: 500,
         message: 'Error While updating',
