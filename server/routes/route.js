@@ -6,6 +6,8 @@ import validateParty from '../validators/party';
 import validateOffice from '../validators/office';
 import User from '../controllers/users';
 import validateUser from '../validators/user';
+import Candidate from '../controllers/candidate';
+import Vote from '../controllers/vote';
 
 const router = express.Router();
 
@@ -35,10 +37,16 @@ router.patch('/api/v1/offices/:id', celebrate(validateOffice.updateOffice), Offi
 // delete a office
 router.delete('/api/v1/offices/:id', Office.deleteOffice);
 
-// // create a user
-// router.post('/api/v1/signup', celebrate(validateUser.createUser), User.register);
+// create a user
+router.post('/api/v1/signup', celebrate(validateUser.createUser), User.register);
 
 // create a user
 router.post('/api/v1/signin', User.login);
+
+// create candidate
+router.post('/api/v1/offices/:id/register', Candidate.createCandidate);
+
+// Vote
+router.post('/api/v1/vote', Vote.createVote);
 
 export default router;
