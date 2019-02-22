@@ -11,6 +11,7 @@ const Candidate = {
 
   async createCandidate(req, res) {
     const office = await officeModel.findOneOffice(req.params.id);
+    console.log(office);
     try {
       if (!office || office.rows.length === 0) {
         return res.status(404).send({
