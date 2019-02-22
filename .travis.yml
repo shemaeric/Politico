@@ -7,8 +7,5 @@ before_script:
 script :
   - npm install
   - npm run lint
-  - npm run test
-after_success :
-  - npm run coverage
 services :
   - postgres

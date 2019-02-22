@@ -45,27 +45,6 @@ const createTableOffice = async () => {
       pool.end();
     });
 };
-// const createTableCandidate = async () => {
-//   const queryText = queryCand.createCandidates;
-//   await pool.query(queryText)
-//     .then(() => {
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       pool.end();
-//     });
-// };
-// const createTableVote = async () => {
-//   const queryText = queryVote.createVote;
-//   await pool.query(queryText)
-//     .then(() => {
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       pool.end();
-//     });
-// };
-
 
 (async () => {
   await createTableUsers();
