@@ -1,6 +1,9 @@
 language : node_js
 node_js :
   - "10.14.1"
+before_script:
+ - psql -c "create user shema with PASSWORD 'shema';" -U postgres
+ - psql -c 'create database politico;' -U postgres
 script :
   - npm install
   - npm run lint
