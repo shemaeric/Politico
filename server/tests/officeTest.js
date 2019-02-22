@@ -14,12 +14,14 @@ chai.use(chaiHttp);
 describe('Party', () => {
   before(async () => {
     try {
+      // delete data inside offices table and change the sequence.
       await pool.query('TRUNCATE offices CASCADE; ALTER SEQUENCE offices_id_seq RESTART WITH 1;');
     } catch (error) {
       console.log(error);
     }
   });
 
+  //  Login to get a Token that can be used to access Authenticated route.
   describe('/POST Login', () => {
     it('Login the user', (done) => {
       chai.request(app)
@@ -35,6 +37,7 @@ describe('Party', () => {
           done();
         });
     });
+    // to access this endpoint you have to set token provided from sign in
     it('should POST an Office', (done) => {
       chai.request(app)
         .post('/api/v1/offices')
@@ -50,9 +53,9 @@ describe('Party', () => {
         });
     });
   });
-
+  // get all office
   describe('GET all Political Offices', () => {
-    it('should get all parties', (done) => {
+    it('should get all offices', (done) => {
       chai.request(app)
         .get('/api/v1/offices')
         .set('x-access-token', token)
@@ -64,9 +67,9 @@ describe('Party', () => {
     });
   });
 
-
+  // get a single office
   describe('/GET', () => {
-    it('should get specific  party', (done) => {
+    it('should get specific  office', (done) => {
       chai.request(app)
         .get('/api/v1/offices/1')
         .set('x-access-token', token)
@@ -78,9 +81,9 @@ describe('Party', () => {
     });
   });
 
-
+  // An adming Authenticated will access this endpoint
   describe('/Patch /api/v1/offices/1', () => {
-    it('should update specific political party', (done) => {
+    it('should update specific political Office', (done) => {
       chai.request(app)
         .patch('/api/v1/offices/1')
         .send({
@@ -95,8 +98,9 @@ describe('Party', () => {
     });
   });
 
+  // Needed to be authenticated for thes endpoint
   describe('/Delete', () => {
-    it('it should delete a specific political party', (done) => {
+    it('it should delete a specific political Office', (done) => {
       chai.request(app)
         .delete('/api/v1/offices/1')
         .set('x-access-token', token)

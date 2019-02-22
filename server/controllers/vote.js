@@ -35,7 +35,7 @@ const Vote = {
     } catch (error) {
       return res.status(500).send({
         status: 500,
-        message: 'Error While updating',
+        message: 'Error While Voting',
       });
     }
   },
