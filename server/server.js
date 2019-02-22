@@ -15,6 +15,11 @@ app.use(routers);
 // use celebrate middleware to handle joi errors
 app.use(joiErrors());
 
+app.use('*',(req,res) => res.status(404).send({
+	status : 404,
+	message : 'URL NOT FOUND',
+}))
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

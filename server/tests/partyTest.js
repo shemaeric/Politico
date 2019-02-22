@@ -20,7 +20,9 @@ describe('Party', () => {
     }
   });
 
-  describe('POST Political party', () => {
+
+  describe('/POST ', () => {
+    // first you have to log in to get a token
     it('Log in to obtain the token ', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signin')
@@ -35,14 +37,16 @@ describe('Party', () => {
           done();
         });
     });
+
+    // After getting a Token it can be passed in the headers
     it('it should POST a party', (done) => {
       chai.request(app)
         .post('/api/v1/parties')
         .set('x-access-token', token)
         .send({
-          name: 'RPF',
-          hqAdress: 'Kacyiru',
-          logoUrl: 'rpf.png',
+          name: 'democrats',
+          hqAdress: 'washington',
+          logoUrl: 'hello.jpg',
         })
         .end((err, res) => {
           res.should.have.status(201);
@@ -52,11 +56,11 @@ describe('Party', () => {
     });
   });
 
-  describe('GET all Political parties', () => {
+  //Get a all parties no Token needed
+  describe('/GET All Parties', () => {
     it('it should show all political parties', (done) => {
       chai.request(app)
         .get('/api/v1/parties')
-        .set('x-access-token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -65,12 +69,11 @@ describe('Party', () => {
     });
   });
 
-
-  describe('GET specific Political party', () => {
-    it('it should show specific political party', (done) => {
+  // Get a Party no Token and authentication needed
+  describe('/GET Party', () => {
+    it('should get a specific political party', (done) => {
       chai.request(app)
         .get('/api/v1/parties/1')
-        .set('x-access-token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -79,9 +82,9 @@ describe('Party', () => {
     });
   });
 
-
-  describe('Patch specific Political party', () => {
-    it('it should update specific political party', (done) => {
+  // Update a party 
+  describe('/Patch Party', () => {
+    it('should update a party', (done) => {
       chai.request(app)
         .patch('/api/v1/parties/1')
         .send({
@@ -96,8 +99,9 @@ describe('Party', () => {
     });
   });
 
-  describe('Delete specific Political party', () => {
-    it('it should delete a specific political party', (done) => {
+  // Deleting a Party
+  describe('/Delete a Party', () => {
+    it('should delete a party', (done) => {
       chai.request(app)
         .delete('/api/v1/parties/1')
         .set('x-access-token', token)

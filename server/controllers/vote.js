@@ -20,7 +20,7 @@ const Vote = {
       if (!vote) {
         return res.status(400).send({
           status: 400,
-          error: 'A candidate would not be created',
+          error: 'A vote would not be Perfomed',
         });
       }
       return res.status(201).send({
