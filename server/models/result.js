@@ -7,7 +7,7 @@ class Result {
 */
 
   async viewResult(id) {
-    const resultQuery = 'SELECT office,  candidate, COUNT(*) AS result FROM votes WHERE office=$1 GROUP BY candidate, office'
+    const resultQuery = 'SELECT office,  candidate, COUNT(*) AS result FROM votes WHERE office=$1 GROUP BY candidate, office';
     try {
       const result = await Pool.query(resultQuery, [id]);
       return result;
@@ -15,8 +15,6 @@ class Result {
       return false;
     }
   }
-
- 
 }
 
 export default new Result();

@@ -19,34 +19,34 @@ router.get('/api/v1', (req, res) => {
 });
 // create a party
 router.post('/api/v1/parties',
-  celebrate(validateParty.createParty),Party.createParty);
+  celebrate(validateParty.createParty), Auth.checkToken, Party.createParty);
 // get all parties
 router.get('/api/v1/parties', Party.getParties);
 // get a specific party
 router.get('/api/v1/parties/:id', Party.getParty);
 // update a party
-router.patch('/api/v1/parties/:id', celebrate(validateParty.updateParty),Party.updateParty);
+router.patch('/api/v1/parties/:id', celebrate(validateParty.updateParty), Auth.checkToken, Party.updateParty);
 // delete a party
-router.delete('/api/v1/parties/:id',Party.deleteParty);
+router.delete('/api/v1/parties/:id', Auth.checkToken, Party.deleteParty);
 // create office
-router.post('/api/v1/offices/', celebrate(validateOffice.createOffice),Office.createOffice);
+router.post('/api/v1/offices/', celebrate(validateOffice.createOffice), Auth.checkToken, Office.createOffice);
 // get All offices
 router.get('/api/v1/offices/', Office.getOffices);
 // get a specific office
 router.get('/api/v1/offices/:id', Office.getOffice);
 // update an Office
-router.patch('/api/v1/offices/:id',celebrate(validateOffice.updateOffice), Office.updateOffice);
+router.patch('/api/v1/offices/:id', celebrate(validateOffice.updateOffice), Auth.checkToken, Office.updateOffice);
 // delete a office
-router.delete('/api/v1/offices/:id',Office.deleteOffice);
+router.delete('/api/v1/offices/:id', Auth.checkToken, Office.deleteOffice);
 // create a user
 router.post('/api/v1/auth/signup', celebrate(validateUser.createUser), User.register);
 // create a user
 router.post('/api/v1/auth/signin', User.login);
 // create candidate
-router.post('/api/v1/offices/:id/register', Candidate.createCandidate);
+router.post('/api/v1/offices/:id/register', Auth.checkToken, Candidate.createCandidate);
 // Vote
-router.post('/api/v1/vote', Vote.createVote);
+router.post('/api/v1/vote', Auth.checkToken, Vote.createVote);
 // view result
-router.get('/api/v1/offices/:id/result', Result.result);
+router.get('/api/v1/offices/:id/result', Auth.checkToken, Result.result);
 
 export default router;

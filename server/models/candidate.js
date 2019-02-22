@@ -9,7 +9,7 @@ class Candidate {
   async createCandidate(data) {
     this.newCandidate = [
       data[0],
-      data[1]
+      data[1],
     ];
 
     try {
@@ -24,8 +24,6 @@ class Candidate {
       return false;
     }
   }
-
- 
 }
 
 export default new Candidate();

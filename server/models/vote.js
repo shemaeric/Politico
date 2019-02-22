@@ -10,7 +10,7 @@ class Vote {
     this.newVote = [
       data[0],
       data[1],
-      data[2]
+      data[2],
     ];
 
     try {
@@ -27,8 +27,6 @@ class Vote {
       return false;
     }
   }
-
- 
 }
 
 export default new Vote();

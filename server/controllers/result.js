@@ -1,5 +1,5 @@
-import Result from '../models/result';
 import moment from 'moment';
+import Result from '../models/result';
 
 const Vote = {
 /*
@@ -12,8 +12,8 @@ const Vote = {
     try {
       const result = await Result.viewResult(req.params.id);
       return res.status(200).send({
-        status : 200,
-        data : result.rows
+        status: 200,
+        data: result.rows,
       });
     } catch (error) {
       return res.status(500).send({
@@ -22,6 +22,6 @@ const Vote = {
       });
     }
   },
-}
+};
 
 export default Vote;

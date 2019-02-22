@@ -1,5 +1,7 @@
-import officeModel from '../models/officeModel';
+/* eslint consistent-return: 0 */
+/* eslint no-shadow: 0 */
 import moment from 'moment';
+import officeModel from '../models/officeModel';
 
 const Office = {
 /*
@@ -17,12 +19,12 @@ const Office = {
     }
 
     const office = officeModel.createOffice(req.body);
-    const name = officeModel.validateOffice(req.body.name);
-    name.then(name => {
-      if(!name) {
-      return res.status(400).send({error : 'Office name already exists'});
-      }
-    });
+    // const name = officeModel.validateOffice(req.body.name);
+    // name.then(name => {
+    //   if(!name) {
+    //   return res.status(400).send({error : 'Office name already exists'});
+    //   }
+    // });
     office.then(office => res.status(201).send({
       status: 201,
       message: 'Office Succefully Created',

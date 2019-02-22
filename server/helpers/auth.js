@@ -19,34 +19,28 @@ const Auth = {
     return token;
   },
 
-  checkToken(req, res, next){
-    const secrete = process.env.SECRET
-    const token = req.headers.authorization;
-    console.log(token);
-    if (token.startsWith('Bearer')) {
-      //Remove Bearer from string 
-      token = token.slice(7, token.length);
+  checkToken(req, res, next) {
+    const token = req.headers['x-access-token'] || req.body['x-access-token'] || null;
+
+    if (!token) {
+      return res.status(401).json({
+        error: 'Please, sign-in!',
+      });
     }
 
-    if (token) {
-      jwt.verify(token, secrete, (err, decode) => {
-        if (err) {
-          return res.json({
-            success : false,
-            message : 'Token is not valid'
-          });
-        } else {
-          req.decode = decoded;
-          next();
-        }
-      });
-    } else {
-      return res.json({
-        success : false,
-        message : 'Auth is not supplied'
-      });
-    }
-}
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(500).json({
+          error: 'Failed to authenticate token',
+        });
+      }
+      req.id = decoded.id || null;
+      req.email = decoded.email || null;
+      next();
+      return true;
+    });
+    return true;
+  },
 };
 
 export default Auth;

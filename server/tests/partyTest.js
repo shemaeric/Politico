@@ -2,176 +2,110 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import Party from '../models/partyModel';
+import pool from '../db/index';
 
+let token = '';
+
+
+const should = chai.should();
+const expect = chai.expect();
 chai.use(chaiHttp);
-const expect = chai.expect;
 
-// Test the Create Party EndPoint
-describe('/POST party', () => {
-  it('should not create a party without all fields filled', (done) => {
-    const data = {
-      logoUrl: 'hiensisss',
-    };
-
-    chai.request(app)
-      .post('/api/v1/parties')
-      .send(data)
-      .set('content-type', 'application/json')
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.body.message).to.equal('Bad Request');
-        done();
-      });
-  });
-  it('it should create a party', (done) => {
-    const data = {
-      name: 'democrats',
-      hqAdress: 'Washngton DC',
-      logoUrl: 'hiensisss',
-    };
-    chai.request(app)
-      .post('/api/v1/parties')
-      .send(data)
-      .set('content-type', 'application/json')
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body.data).to.have.property('name');
-        expect(res.body.message).to.equal('Party Succefully Created');
-        done();
-      });
-  });
-});
-
-// test Get all parties endpoint
-describe('/GET all parties', () => {
-  it('it should get all parties', (done) => {
-    chai.request(app)
-      .get('/api/v1/parties')
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body).to.be.an('Object');
-        done();
-      });
-  });
-});
-
-describe('/GET party', () => {
-  it('it should fail to get a specific party with invalid ID', (done) => {
-    const data = {
-      name: 'hie',
-      hqAdress: 'kigali',
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
-    };
-
-    const party = Party.createParty(data);
-    chai.request(app)
-      .get('/api/v1/parties/dhfdafd')
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
-        expect(res.body.message).to.equal('party not found');
-        done();
-      });
+describe('Party', () => {
+  before(async () => {
+    try {
+      await pool.query('TRUNCATE parties CASCADE; ALTER SEQUENCE parties_id_seq RESTART WITH 1;');
+    } catch (error) {
+      console.log(error);
+    }
   });
 
-  it('it should get a specific party', (done) => {
-    const data = {
-      name: 'hie',
-      hqAdress: 'kigali',
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
-    };
-
-    const party = Party.createParty(data);
-    chai.request(app)
-      .get(`/api/v1/parties/${party.id}`)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body).to.be.an('Object');
-        done();
-      });
-  });
-});
-
-describe('/PATCH party', () => {
-  it('it should fail to Update a party', (done) => {
-    const data = {
-      name: 'democrats',
-      hqAdress: 'kigali',
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
-    };
-
-    const party = Party.createParty(data);
-    chai.request(app)
-      .patch('/api/v1/parties/dhfdafd')
-      .send({ name: 'demo' })
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
-        expect(res.body.message).to.equal('party not found');
-        done();
-      });
+  describe('POST Political party', () => {
+    it('First log in the user to generate the token', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signin')
+        .send({
+          email: 'bwendaa@gmail.com',
+          password: 'bwend',
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          token = res.body.token;
+          done();
+        });
+    });
+    it('it should POST a party', (done) => {
+      chai.request(app)
+        .post('/api/v1/parties')
+        .set('x-access-token', token)
+        .send({
+          name: 'RPF',
+          hqAdress: 'Kacyiru',
+          logoUrl: 'rpf.png',
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
   });
 
-  it('it should update a party', (done) => {
-    const data = {
-      name: 'democrats',
-      hqAdress: 'kigali',
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
-    };
-
-    const party = Party.createParty(data);
-    chai.request(app)
-      .patch(`/api/v1/parties/${party.id}`)
-      .send({ name: 'demo' })
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body).to.be.an('Object');
-        done();
-      });
-  });
-});
-
-describe('/DELETE a party', () => {
-  it('it should fail to Delete a party', (done) => {
-    const data = {
-      name: 'democrats',
-      hqAdress: 'kigali',
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
-    };
-
-    const party = Party.createParty(data);
-    chai.request(app)
-      .delete('/api/v1/parties/dhfdafd')
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
-        expect(res.body.message).to.equal('Party not found');
-        done();
-      });
+  describe('GET all Political parties', () => {
+    it('it should show all political parties', (done) => {
+      chai.request(app)
+        .get('/api/v1/parties')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
   });
 
-  it('it should delete a party', (done) => {
-    const data = {
-      name: 'democrats',
-      hqAdress: 'kigali',
-      logoUrl: 'hiensisss',
-      createdDate: 23456,
-      modifiedDate: 2345,
-    };
 
-    const party = Party.createParty(data);
-    chai.request(app)
-      .delete(`/api/v1/parties/${party.id}`)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        done();
-      });
+  describe('GET specific Political party', () => {
+    it('it should show specific political party', (done) => {
+      chai.request(app)
+        .get('/api/v1/parties/1')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+  });
+
+
+  describe('Patch specific Political party', () => {
+    it('it should update specific political party', (done) => {
+      chai.request(app)
+        .patch('/api/v1/parties/1')
+        .send({
+          name: 'Republican',
+        })
+        .set('x-access-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+  });
+
+  describe('Delete specific Political party', () => {
+    it('it should delete a specific political party', (done) => {
+      chai.request(app)
+        .delete('/api/v1/parties/1')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
   });
 });

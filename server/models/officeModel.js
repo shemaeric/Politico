@@ -1,9 +1,9 @@
+/* eslint class-methods-use-this: 0 */
 import moment from 'moment';
 import uuid from 'uuid';
 import Pool from '../db/index';
 
 class Office {
-
   /*
 * returns {object} Office Object
 */
@@ -11,7 +11,7 @@ class Office {
   async createOffice(data) {
     this.newOffice = [
       data.name,
-      data.type
+      data.type,
     ];
 
     try {
@@ -83,12 +83,12 @@ class Office {
   }
 
   async validateOffice(name) {
-    const query = 'SELECT * FROM offices WHERE name = $1'
-    try{
+    const query = 'SELECT * FROM offices WHERE name = $1';
+    try {
       const validateName = await Pool.query(query, name);
       const rows = validateName.rowCount;
       return rows;
-    } catch(err) {
+    } catch (err) {
       return false;
     }
   }

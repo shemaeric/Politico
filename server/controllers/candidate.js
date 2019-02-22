@@ -1,6 +1,6 @@
+import moment from 'moment';
 import candidate from '../models/candidate';
 import officeModel from '../models/officeModel';
-import moment from 'moment';
 
 const Candidate = {
 /*
@@ -24,17 +24,17 @@ const Candidate = {
         req.body.id,
       ];
       const candid = await candidate.createCandidate(data);
-      if(!candid){
+      if (!candid) {
         return res.status(400).send({
-          status : 400,
-          error : 'A candidate would not be created'
-        })
+          status: 400,
+          error: 'A candidate would not be created',
+        });
       }
       return res.status(201).send({
         status: 201,
         data: [{
-          office : candid.office,
-          user : candid.candidate,
+          office: candid.office,
+          user: candid.candidate,
         }],
       });
     } catch (error) {
@@ -44,6 +44,6 @@ const Candidate = {
       });
     }
   },
-}
+};
 
 export default Candidate;

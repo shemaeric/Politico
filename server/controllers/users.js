@@ -44,6 +44,7 @@ class User {
           const payload = {
             id: res.id,
             email: res.email,
+            isadmin: res.isadmin,
           };
           delete payload.password;
           const token = Auth.generateToken(payload);
