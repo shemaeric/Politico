@@ -21,6 +21,7 @@ class Candidate {
       this.newCandidate);
       return candidate.rows[0];
     } catch (err) {
+      console.log(err);
       return false;
     }
   }
