@@ -4,6 +4,7 @@ node_js :
 before_script:
   - psql -c "create user shema with PASSWORD 'shema';" -U postgres
   - psql -c 'create database politico;' -U postgres
+  - psql -c 'create database politico_test;' -U postgres
 script :
   - npm install
   - npm run lint
