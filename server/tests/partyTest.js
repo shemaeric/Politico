@@ -21,7 +21,7 @@ describe('Party', () => {
   });
 
   describe('POST Political party', () => {
-    it('First log in the user to generate the token', (done) => {
+    it('Log in to obtain the token ', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signin')
         .send({
