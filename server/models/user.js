@@ -34,7 +34,6 @@ class User {
       this.newUser);
       return user.rows[0];
     } catch (err) {
-      console.log(err);
       return false;
     }
   }

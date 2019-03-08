@@ -56,7 +56,7 @@ describe('Party', () => {
     });
   });
 
-  //Get a all parties no Token needed
+  // Get a all parties no Token needed
   describe('/GET All Parties', () => {
     it('it should show all political parties', (done) => {
       chai.request(app)
@@ -82,7 +82,7 @@ describe('Party', () => {
     });
   });
 
-  // Update a party 
+  // Update a party
   describe('/Patch Party', () => {
     it('should update a party', (done) => {
       chai.request(app)
