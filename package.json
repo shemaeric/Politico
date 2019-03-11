@@ -4,10 +4,10 @@
   "description": "Politico is a platform to help a user to vote or register for candidate as politician.",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require babel-core/register --timeout 5000 server/tests/*.js --exit",
-    "build": "babel server/server.js --out-dir build",
-    "start": "babel-watch server/server.js",
-    "db": "babel-node server/db/db.js --",
+    "test": "NODE_ENV=testing nyc --reporter=html --reporter=text mocha --require babel-core/register --timeout 5000 server/tests/*.js --exit",
+    "build": "NODE_ENV=production babel server/server.js --out-dir build",
+    "start": "NODE_ENV=development babel-watch server/server.js",
+    "db": "babel-node server/db/init.js --",
     "lint": "eslint ./server --fix",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },

@@ -11,12 +11,12 @@ const Office = {
 */
 
   createOffice(req, res) {
-    if (!req.body.name || !req.body.type) {
-      return res.status(400).send({
-        status: 400,
-        message: 'name and Type could not be empty',
-      });
-    }
+    // if (!req.body.name || !req.body.type) {
+    //   return res.status(400).send({
+    //     status: 400,
+    //     message: 'name and Type could not be empty',
+    //   });
+    // }
 
     const office = officeModel.createOffice(req.body);
     // const name = officeModel.validateOffice(req.body.name);
@@ -25,12 +25,14 @@ const Office = {
     //   return res.status(400).send({error : 'Office name already exists'});
     //   }
     // });
+    console.log(office);
     office.then(office => res.status(201).send({
       status: 201,
       message: 'Office Succefully Created',
       data: office,
-    }));
+    })).catch(err => console.log(err));
   },
+
 
   /*
 * @param {Object} req

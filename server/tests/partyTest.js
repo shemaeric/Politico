@@ -1,18 +1,32 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import Party from '../models/partyModel';
-import pool from '../db/index';
-
-let token = '';
-
+import getToken from './baseTests';
+import { createTables, pool } from '../db';
 
 const should = chai.should();
 const expect = chai.expect();
 chai.use(chaiHttp);
 
 describe('Party', () => {
+  let token;
   before(async () => {
+    await createTables()
+      .then(async () => {
+        await getToken()
+          .then((res) => {
+            token = res.body.data[0].token;
+            return token;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        pool.end();
+      });
+  });
+  after(async () => {
     try {
       await pool.query('TRUNCATE parties CASCADE; ALTER SEQUENCE parties_id_seq RESTART WITH 1;');
     } catch (error) {
@@ -22,22 +36,6 @@ describe('Party', () => {
 
 
   describe('/POST ', () => {
-    // first you have to log in to get a token
-    it('Log in to obtain the token ', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signin')
-        .send({
-          email: 'bwendaa@gmail.com',
-          password: 'bwend',
-        })
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          token = res.body.token;
-          done();
-        });
-    });
-
     // After getting a Token it can be passed in the headers
     it('it should POST a party', (done) => {
       chai.request(app)
