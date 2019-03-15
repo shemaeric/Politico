@@ -11,21 +11,20 @@ const Office = {
 */
 
   createOffice(req, res) {
-    // if (!req.body.name || !req.body.type) {
-    //   return res.status(400).send({
-    //     status: 400,
-    //     message: 'name and Type could not be empty',
-    //   });
-    // }
+    if (!req.body.name || !req.body.type) {
+      return res.status(400).send({
+        status: 400,
+        message: 'name and Type could not be empty',
+      });
+    }
 
     const office = officeModel.createOffice(req.body);
-    // const name = officeModel.validateOffice(req.body.name);
-    // name.then(name => {
-    //   if(!name) {
-    //   return res.status(400).send({error : 'Office name already exists'});
-    //   }
-    // });
-    console.log(office);
+    const name = officeModel.validateOffice(req.body.name);
+    name.then((name) => {
+      if (!name) {
+        return res.status(400).send({ error: 'Office name already exists' });
+      }
+    });
     office.then(office => res.status(201).send({
       status: 201,
       message: 'Office Succefully Created',

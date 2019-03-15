@@ -8,10 +8,18 @@ import queryVote from './queries/vote';
 
 dotenv.config();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+let pool;
 
+if (process.env.NODE_ENV === 'development') {
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+  });
+} else {
+  pool = new Pool({
+    connectionString: process.env.DATABASE_TEST,
+  });
+}
+console.log('ddnfdnjnjndnvbnfjd', pool);
 pool.on('connect', () => {
   console.log('connected to the db');
 });

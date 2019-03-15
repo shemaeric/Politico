@@ -9,10 +9,10 @@ chai.use(chaiHttp);
 const getToken = () => {
   let token;
   const user = {
-    firstname: 'mun',
+    firstname: 'munaca',
     lastname: 'clintonss',
     othername: 'none',
-    email: 'musa@gmail.com',
+    email: 'musaza@gmail.com',
     phone: '66555',
     passport: "it's coming soon",
     password: 'hello',

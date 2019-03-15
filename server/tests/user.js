@@ -29,10 +29,10 @@ describe('User', () => {
   describe('POST user', () => {
     it('Should not create a user while user exists', (done) => {
       const userExists = {
-        firstname: 'mun',
+        firstname: 'muna',
         lastname: 'clintonss',
         othername: 'none',
-        email: 'musa@gmail.com',
+        email: 'musaza@gmail.com',
         phone: '66555',
         passport: "it's coming soon",
         password: 'hello',
@@ -52,7 +52,7 @@ describe('User', () => {
         firstname: 'munana',
         lastname: 'clinton',
         othername: 'none',
-        email: 'musaza@gmail.com',
+        email: 'musazi@gmail.com',
         phone: '66555',
         passport: "it's coming soon",
         password: 'hello',
@@ -73,7 +73,7 @@ describe('User', () => {
   describe('LOGIN user', () => {
     it('Should login a User', (done) => {
       const user = {
-        email: 'musa@gmail.com',
+        email: 'musazi@gmail.com',
         password: 'hello',
       };
       chai.request('http://localhost:3000')

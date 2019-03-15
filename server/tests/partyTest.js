@@ -34,7 +34,6 @@ describe('Party', () => {
     }
   });
 
-
   describe('/POST ', () => {
     // After getting a Token it can be passed in the headers
     it('it should POST a party', (done) => {
@@ -74,6 +73,16 @@ describe('Party', () => {
         .get('/api/v1/parties/1')
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    it('should not get a specific political party without valid id', (done) => {
+      chai.request(app)
+        .get('/api/v1/parties/noo')
+        .end((err, res) => {
+          res.should.have.status(404);
           res.body.should.be.a('object');
           done();
         });
