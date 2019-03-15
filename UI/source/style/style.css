@@ -1,0 +1,213 @@
+/*Start styling*/
+* {
+	text-decoration: none;
+}
+body {
+	background-color: #fff;
+}
+
+
+.section-logo {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 30px;
+	font-weight: 900;
+	color: #111;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 100px;
+}
+
+.section-header p {
+	margin-top: 0;
+	text-align: center;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+    color: #9e9c9c;
+}
+
+.login-form {
+    margin: 0 auto;
+	width: 100%;
+    min-height: 400px;
+    text-decoration: none;
+}
+body {
+    background-color: #fff;
+}
+
+/*header {
+    background-color: #fff;
+    width: 100%;
+    height: 120px;
+}*/
+
+.section-logo {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: #111;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.section-header p {
+    margin-top: 0;
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media only screen and (min-width : 1000px) {
+    .login-form {
+        width : 70%;
+    }
+}
+
+.panel{
+	margin: 0 auto;
+    width: 80%;
+    background:#fff;
+    border-radius: 10px;
+    box-shadow: 0px 1px 2px 2px #ccc;
+    background-color: #cdd6d34f;
+}
+
+.login-form .panel-title{
+    color: #343434;
+    text-align:center;
+    border-bottom: 1px solid #a59d9d;
+}
+.login-form .panel-title h2{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #676464;
+}
+.login-form .panel-title h2 i{
+    margin-right: 10px;
+}
+
+.login-form .panel-body {
+    width: 100%;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.login-form .panel-body .row {
+	padding-left: 15px;
+    padding-left: 15px;
+    padding-right: 25px;
+    margin-bottom: 15px;
+}
+
+.login-form .panel-body .row label{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.panel-body .row .form-input{
+    display: block;
+    width: 95%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.login-form .panel-body .btn{
+    color: #131212;
+    background-color: #797373;
+    border-color: #2e6da4;
+    display: inline-block;
+    padding: 10px 12px;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 100%;
+}
+.login-form .panel-body .bottom{
+    text-align: center;
+}
+
+.login-form .panel-body .btn:hover{
+    background-color: #71808c;
+}
+
+.login-form .panel-body .bottom h3{
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 50;
+    font-size: 15px;
+}
+
+.login-form .panel-body .bottom .btn-down{
+    width:100%;
+    color:#337ab7;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.login-form .panel-body .bottom .reset-botton{
+    color:#337ab7;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.login-form .panel-body .bottom a:hover{
+    text-decoration: underline;
+}
+
+footer {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding : 5px 10px;
+    background-color: #e0dddd;
+}
+
+footer p {
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+@media only screen and (min-width: 1000px) {
+    footer {
+        margin-top: 40px;
+        margin-bottom: 0;
+    }
+
+    footer p {
+    display: block;
+    margin: 0 auto;
+    margin-left: 500px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    }
+}
