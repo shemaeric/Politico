@@ -1,0 +1,15 @@
+{
+    "extends": "airbnb-base",
+    "rules" : {
+    	"eslint linebreak-style" : [0, "error", "windows"],
+    	"no-unused-vars": [0, {"vars": "all", "args": "after-used"}],
+    	"no-console": "off",
+    	"prefer-destructuring": [0, {"object": true, "array": false}]
+    },
+    "env" : {
+    	"node" : true,
+    	"mocha" : true	
+    }
+    
+    
+}
