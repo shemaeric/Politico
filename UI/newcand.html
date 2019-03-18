@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Politico | Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="source/style/main2.css">
+</head>
+<body>
+	<header>
+		<a href="index.html" class="header-logo">Politico</a>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="vote.html">Vote</a></li>
+				<li><a href="#">Log Out</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section>
+			<div class="box">
+				<h1>Register as Candidate</h1>
+				<div id="box">
+				<fieldset>
+					<legend>Candidate Info</legend>
+					<form>
+						<div class="input">
+							<label>Name :</label>
+							<input type="text" name="candName" class="form-control">
+						</div>
+						<div class="input">
+							<label>Political Party :</label>
+							<select name="party" class="form-control">
+								<option >National Party</option>
+								<option >People Party</option>
+								<option >Democrats</option>
+								<option >Republicans</option>
+							</select>
+						</div>
+						<div class="input">
+							<label> Government Office :</label>
+							<select name="govOffice" class="form-control">
+								<option >Fedelar officer</option>
+								<option >Legislative officer</option>
+								<option >State Officer</option>
+								<option >Local Government Officer</option>
+							</select>
+						</div>
+						<div class="input">
+							<label>Profile Photo :</label>
+							<input type="file" name="candpic" class="form-control">
+						</div>
+						<div class="input">
+							<label class="text-label">Campain Slogan :</label>
+							<textarea placeholder="Campain Slogan..." class="textarea"></textarea>
+						</div>
+						<div class="text-center">
+						<button id="submitBtn" class="btn-2">
+							Submit
+						</button>
+					</div>
+					</form>
+				</fieldset>
+			</div>
+				<div class="box-2">
+					<div class="box-2-title">
+						<h3>What You Think Matters</h3>
+					</div>
+					<h1>Feedback</h1>
+					<form>
+						<textarea placeholder="leave a feedback"></textarea>
+						<button class="btn-2">Submit</button>
+					</form>
+				</div>
+			</div>
+
+		</section>
+	</main>
+	<footer>
+		<p>Politico, Copyright &copy; 2019</p>
+	</footer>
+</body>
+</html>
