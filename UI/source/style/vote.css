@@ -16,17 +16,18 @@ a {
 
 header {
 	background-color: #fff;
-	width: 500px;
-	height: 130px;
+	width: 100vh;
+	height: 100px;
 }
 
 header .header-logo {
 	font-family: "Times New Roman", Times, serif;
 	font-size: 24px;
-	font-weight: 900;
+	font-weight: 1000;
 	color: #111;
 	display: block;
 	margin: 0 auto;
+	padding-top: 20px;
 	text-align: center; 
 }
 
@@ -47,7 +48,24 @@ header nav ul li a{
 	font-family: "Times New Roman", Times, serif;
 	font-size: 16px;
 	color: #111;
+	padding-left: 30px;
+	padding-top: 10px;
 	text-transform: uppercase;
+}
+
+.mobile {
+	display: block;
+	color: #fff;
+	background-color: #000;
+	text-align: center;
+	width: 100vh;
+	padding: 7px;
+}
+
+
+
+.mobile:active {
+	background-color: #4a4a4a;
 }
 
 .info img{
@@ -91,6 +109,7 @@ header nav ul li a{
 	header .header-logo {
 		width: 200px;
 		display: inline;
+		margin-left: 20px;
 		margin-top: 330px;
 		text-align: left;
 	}
@@ -138,10 +157,6 @@ main {
 	font-weight: 300;
 }
 
-.hidden {
-	display: none;
-}
-
 section {
 	width: auto;
 	margin-left: 250px;
@@ -177,7 +192,7 @@ ul#nav li a.selected {
 		display: none;
 	}
 	.side {
-		width: 100%;
+		width: 100vh;
 		background-color: #6b6969;
 		float: left;
 	}
@@ -211,7 +226,7 @@ ul#nav li a.selected {
 #activity {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 100vh;
 }
 
 #activity td, #activity th{
@@ -271,8 +286,11 @@ footer p {
 }
 
 @media only screen and (min-width: 1000px) {
+	#activity {
+		width: 100%;
+	}
 	.aside {
-		height: calc(100vh - 120px);
+		height: calc(100vh + 80px);
 	}
 	.box {
 		width: 1000px;
@@ -304,17 +322,18 @@ footer p {
 	}
 
 	footer {
-	width: 100%;
-	padding : 20px 40px;
-	background-color: #fff;
+		margin-top: 200px;
+		width: 100%;
+		padding : 5px 20px;
+		background-color: #fff;
 	}
 
 	footer p {
-	display: block;
-	margin: 0 auto;
-	margin-left: 500px;
-	font-family: "Times New Roman", Times, serif;
-	font-size: 20px;
+		display: block;
+		margin: 0 auto;
+		margin-left: 500px;
+		font-family: "Times New Roman", Times, serif;
+		font-size: 20px;
 	}
 }
 
