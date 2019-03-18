@@ -1,0 +1,72 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin | Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="source/style/main.css">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<a href="#">Politico</a>
+		</div>
+	</header>
+	</header>
+	<a href="#" class="mobile" id="menu">MENU</a>
+	<main>
+		<div class="aside" id="aside">
+			<ul id="nav">
+				<li><a href="createpol.html"  id="infoas" ><img src="source/images/add.jpg"> Create Political Party</a></li>
+				<li><a href="creategov.html" id="infoas"><img src="source/images/add.jpg">Create Government Office</a></li>
+				<li><a href="admindash.html" id="infoas" ><img src="source/images/list.png">Registed Parties</a></li>
+				<li><a href="#" class="logout" ">LogOut</a></li>
+			</ul>
+		</div>
+		<section>
+			<h1>Edit Party #1</h1>
+			<div id="box">
+				<form>
+					<fieldset>
+						<legend>Party Info</legend>
+						<fieldset>
+							<legend>Current Info</legend>
+							<div class="input">
+								<label>Name :</label>
+								<input type="text" name="name" value="name" class="form-control">
+							</div>
+							<div class="input">
+								<label>Head Quater :</label>
+								<input type="text" name="hdquater" value="kigali" class="form-control">
+							</div>
+						
+						</fieldset>
+						<fieldset>
+							<legend>New Info</legend>
+							<div class="input">
+								<label>Name :</label>
+								<input type="text" name="name" class="form-control">
+							</div>
+							<div class="input">
+								<label>Head Quater :</label>
+								<input type="text" name="hdquater" class="form-control">
+							</div>
+							<div class="input">
+								<label>Party Logo :</label>
+								<input type="file" name="logo" class="form-control">
+							</div>
+						</fieldset>
+						<a href="#" class="btn">Change</a>
+					</fieldset>
+				</form>
+			</div>
+		</section>
+	</main>
+	<script >
+		let menu = document.getElementById('menu'),
+			aside = document.getElementById('aside');
+		menu.addEventListener('click', function () {
+			aside.className = 'side';
+		});
+	</script>
+</body>
+</html>
