@@ -1,62 +1,52 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../server';
-import Party from '../models/partyModel';
-import pool from '../db/index';
-
-let token = '';
-
+import getToken from './baseTests';
+import { pool, createTables } from '../db';
 
 const should = chai.should();
 const expect = chai.expect();
 chai.use(chaiHttp);
 
-describe('Party', () => {
+describe('Office', () => {
+  let token;
+  let id;
   before(async () => {
+    await createTables()
+      .then(async () => {
+        await getToken()
+          .then((res) => {
+            id = res.body.data[0].user.id;
+            token = res.body.data[0].token;
+            return token;
+          })
+          .catch((err) => { console.log(err); });
+      })
+      .catch((err) => {
+        pool.end();
+      });
+  });
+
+  after(async () => {
     try {
-      // delete data inside offices table and change the sequence.
       await pool.query('TRUNCATE offices CASCADE; ALTER SEQUENCE offices_id_seq RESTART WITH 1;');
+      await pool.query('TRUNCATE users CASCADE; ALTER SEQUENCE users_id_seq RESTART WITH 1;');
     } catch (error) {
       console.log(error);
     }
   });
-
-  //  Login to get a Token that can be used to access Authenticated route.
-  describe('/POST Login', () => {
-    it('Login the user', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signin')
-        .send({
-          email: 'bwendaa@gmail.com',
-          password: 'bwend',
-        })
+  // get all office
+  describe('GET all Political Offices', () => {
+    it('should get all offices even without token', (done) => {
+      chai.request('http://localhost:3000')
+        .get('/api/v1/offices')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          token = res.body.token;
           done();
         });
     });
-    // to access this endpoint you have to set token provided from sign in
-    it('should POST an Office', (done) => {
-      chai.request(app)
-        .post('/api/v1/offices')
-        .set('x-access-token', token)
-        .send({
-          name: 'huhujsu',
-          type: 'state',
-        })
-        .end((err, res) => {
-          res.should.have.status(201);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-  });
-  // get all office
-  describe('GET all Political Offices', () => {
     it('should get all offices', (done) => {
-      chai.request(app)
+      chai.request('http://localhost:3000')
         .get('/api/v1/offices')
         .set('x-access-token', token)
         .end((err, res) => {
@@ -67,46 +57,88 @@ describe('Party', () => {
     });
   });
 
-  // get a single office
-  describe('/GET', () => {
-    it('should get specific  office', (done) => {
-      chai.request(app)
-        .get('/api/v1/offices/1')
-        .set('x-access-token', token)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-  });
-
-  // An adming Authenticated will access this endpoint
-  describe('/Patch /api/v1/offices/1', () => {
-    it('should update specific political Office', (done) => {
-      chai.request(app)
-        .patch('/api/v1/offices/1')
+  describe('POST a Political Office', () => {
+    it('should not create an office without authenticating the user', (done) => {
+      chai.request('http://localhost:3000')
+        .post('/api/v1/offices')
         .send({
-          name: 'local',
+          name: 'democrats',
+          type: 'state',
         })
-        .set('x-access-token', token)
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(401);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+    it('should create a offices', (done) => {
+      chai.request('http://localhost:3000')
+        .post('/api/v1/offices')
+        .set('x-access-token', token)
+        .send({
+          name: 'democrats',
+          type: 'state',
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
           res.body.should.be.a('object');
           done();
         });
     });
   });
 
-  // Needed to be authenticated for thes endpoint
-  describe('/Delete', () => {
-    it('it should delete a specific political Office', (done) => {
-      chai.request(app)
+  describe('PATCH update an office', () => {
+    it('should not update the office without a valid id', (done) => {
+      chai.request('http://localhost:3000')
+        .patch('/api/v1/offices/nooo')
+        .set('x-access-token', token)
+        .send({
+          name: 'demo',
+        })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.should.be.a('object');
+          done();
+        });
+    });
+
+    it('should not update the office without a valid id', (done) => {
+      chai.request('http://localhost:3000')
+        .patch('/api/v1/offices/1')
+        .set('x-access-token', token)
+        .send({
+          name: 'demo',
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.a('object');
+          done();
+        });
+    });
+  });
+
+  describe('DELETE delete an office', () => {
+    it('should not delete the office without a valid id', (done) => {
+      chai.request('http://localhost:3000')
+        .delete('/api/v1/offices/nooo')
+        .set('x-access-token', token)
+        .send({
+          name: 'demo',
+        })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.should.be.a('object');
+          done();
+        });
+    });
+
+    it('should delete the office', (done) => {
+      chai.request('http://localhost:3000')
         .delete('/api/v1/offices/1')
         .set('x-access-token', token)
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.be.a('object');
+          res.should.be.a('object');
           done();
         });
     });
